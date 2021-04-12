@@ -1,0 +1,23 @@
+{
+  "name": "web1-backend",
+  "version": "1.0.0",
+  "description": "Tarefa de we1 na UFRRJ\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b\u001b[D\u001b[D\u001b[D\u001b[D\u001bfeita como\u001b[2~ requisito de aprovacao em WEB1 na UFRRJ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alex-Jr/web1-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alex-Jr/web1-backend/issues"
+  },
+  "homepage": "https://github.com/Alex-Jr/web1-backend#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "pg": "^8.5.1"
+  }
+}
