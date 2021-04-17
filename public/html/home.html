@@ -60,7 +60,9 @@
                     }
                 };
     
-                xhttp.open("GET", "usuarios", true);
+                const nome = document.getElementById('ipt_nome').value;
+
+                xhttp.open("GET", `usuarios?nome=${nome}`, true);
     
                 xhttp.send();
             }
@@ -78,7 +80,7 @@
 
         <div>
             <div>
-                <input type="text">
+                <input type="text" id="ipt_nome" name="nome">
                 <button onclick="buscar()">BUSCAR</button>
             </div>
 
