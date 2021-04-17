@@ -1,11 +1,14 @@
 const perfilValidator = require("../../validator/perfil");
 const database = require("../../database/setup");
-const { ValidationError } = require("../../utils/errors");
+const { ValidationError } = require("../../classes/errors");
 
-module.exports = (req, res, body) => {
-    console.log('Rota post perfil', body)
+module.exports = (req, res) => {
     try {
+        const body = req.body;
         const id = JSON.parse(req.headers.cookie.user).id;
+
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'text/plain');
 
         perfilValidator(body);
 
