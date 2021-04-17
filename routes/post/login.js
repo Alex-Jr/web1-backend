@@ -25,7 +25,9 @@ module.exports = (req, res, body) => {
         database.query(sql, values, (errors, results, fields ) => {
             console.log(errors, results);
             res.statusCode = 200;
-            res.end(JSON.stringify({user: results[0]}))
+            res.setHeader('Content-Type', 'text/plain');
+
+            res.end(JSON.stringify(results[0]));
         }); 
     } catch (err) {
         console.warn(err);

@@ -1,8 +1,30 @@
 <html>
     <head>
-        <title>HomePage</title>
+        <title>Homepage</title>
     </head>
+
+    <script>
+        function logout() {
+          document.cookie = 'logged=false';
+          document.cookie = 'user=false';
+          window.location.assign("/login.html");
+        } 
+    </script>
+
+    <script>
+        const cookies = Object.fromEntries(document.cookie.split('; ').map(x => x.split('=')));
+        //  check if user is logged >
+        if(cookies.logged === 'true') {
+          const user = JSON.parse(cookies.user);
+        } else {  
+            window.location.assign("/login.html");
+        }
+    </script>
+    
     <body>
-        Hello world
+        <div>
+            <input type="text">
+            <button onclick="logout()">Logout</button>
+        </div>
     </body>
 </html>
