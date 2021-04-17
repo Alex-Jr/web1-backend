@@ -1,5 +1,4 @@
 require('dotenv').config()
-const mysql = require('mysql');
 const http = require('http');
 const path = require('path');
 const { parse } = require('querystring');
@@ -9,13 +8,7 @@ const mimeTypes = require('./utils/mimeTypes');
 const foldersByExt = require('./utils/foldersByExt');
 
 const postRoutes = require('./routes/post');
-
-const db = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : 'password',
-  database : 'web1'
-});
+const database = require('./database/setup');
 
 const server = http.createServer((req, res) => {
   console.log('Requested: ', req.url);
@@ -47,6 +40,6 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(8080, 'localhost', () => {
-  db.connect();
+  database.connect();
   console.log('Server running at http://localhost:8080');
 })
