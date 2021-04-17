@@ -1,0 +1,74 @@
+/* Incompleto, falta resolver uns problemas de dimensões, 
+    e botar o link no canto direito da div */
+
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    body{
+        background-color: rgb(18,18,18);;
+        
+        margin-top: 7%;
+        justify-content: center;
+    }
+    #container{
+        background-color: rgb(48,48,48);
+        width: 60%;
+        margin-left: 20%;
+        height: 350px;
+        display: flex;
+    
+    }
+    #imagem , #login_dados{
+        height: 100%;
+    }
+    #imagem{
+        width: 35%;
+    }
+    img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    #login_dados{
+        width: 65%;
+    }
+    #conteudo{
+        width: 80%;
+        margin-left: 10%;
+        height: 80%;
+        margin-top: 10%;
+    }
+    h2,input,button{
+        margin-bottom: 5%;
+    }
+    h2{
+        width: 100%;
+        color: white;
+        font-family: serif;
+    }
+    input{
+        width: 96%;
+        padding: 5px;
+        background-color: rgb(68,68,68);
+        border-radius: 10px;
+        border-color: rgb(68,68,68);
+    }
+    button{
+        width: 100%;
+        padding: 5px;
+        background-color: rgb(159,23,140);
+        border-radius: 10px;
+        color: white;
+    }
+    #div_textos{
+        width: 100%;
+        display: flex;
+    }
+    p{
+        color: red;
+        margin-right: 20%;
+    }
+    a{
+        color: rgb(159,23,140);
+    }
