@@ -1,0 +1,73 @@
+<html>
+<head>
+  <title>
+    HomePage
+  </title>
+</head>
+<body id='body'>
+  <script>
+    function renderUser(user) {
+      const body = document.getElementById('body');
+      body.innerHTML = '';
+
+      let finalHTML = ''
+
+      for(const [key, value] of Object.entries(user)) {
+        if(key === 'photo') finalHTML += `<img src='${value}'>`
+        else finalHTML += `<li>${key}: ${value}</li>`
+      }
+
+      body.innerHTML = finalHTML;
+
+    }
+  </script>
+
+  <script>
+    function logout() {
+      document.cookie = 'logged=false';
+      document.cookie = 'user=false';
+      document.location.replace('/login');
+    } 
+  </script>
+  
+  <!-- if data comes through view -->
+  <% if (typeof user !== 'undefined') { %>
+    <script>
+      const username = "<%= user.username %>";
+      const name =  "<%= user.name %>"
+      const email =  "<%= user.email %>"
+      const photo =  "<%= user.photo %>"
+      const phone =  "<%= user.phone %>"
+      
+      const user = {
+        username,
+        name,
+        email,
+        photo,
+        phone
+      }
+    
+      document.cookie = `user=${JSON.stringify(user)}`;
+      document.cookie = 'logged=true';
+      window.history.pushState("", "", '/');
+
+      renderUser(user);
+    </script>
+  <% } else { %>
+    <script>
+      const cookies = Object.fromEntries(document.cookie.split('; ').map(x => x.split('=')));
+      //  check if user is logged >
+      if(cookies.logged === 'true') {
+        renderUser(JSON.parse(cookies.user))
+      } else {  
+        document.location.replace('/login');
+      }
+    </script>
+  <% } %>
+
+  <br>
+  <button onclick="logout()">Sair</button>
+
+</body>
+
+</html>

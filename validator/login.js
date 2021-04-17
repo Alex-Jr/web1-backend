@@ -18,7 +18,7 @@ module.exports = (body) => {
 
     if(!isEmailValido(email)) validationErrors.push('Email inválido');
 
-    if(!isSenhaValida(email)) validationErrors.push('Senha é obrigatória');
+    if(!isSenhaValida(senha)) validationErrors.push('Senha é obrigatória');
 
     if(validationErrors.length > 0) {
         throw new Error(validationErrors.join('/'));
