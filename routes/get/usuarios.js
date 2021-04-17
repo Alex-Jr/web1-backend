@@ -2,7 +2,7 @@ const database = require("../../database/setup")
 
 module.exports = (req, res, params) => {
     try {
-        console.log('Requested list usuarios');
+        const params = req.params;
 
         res.statusCode = 200;
         res.setHeader('Content-Type', 'text/plain');

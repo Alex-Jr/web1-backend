@@ -1,3 +1,4 @@
 module.exports = {
-    'usuarios': require('./usuarios')
+    'usuarios': require('./usuarios'),
+    'files': require('./sendFile'),
 }

@@ -9,13 +9,13 @@ const { ServerResponse } = require('http')
  * @param {ServerResponse} res 
  * @param {*} body 
  */
-module.exports = (req, res, body) => {
-    console.log('Rota post login', body)
-
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain');
-
+module.exports = (req, res) => {
     try {
+        const body = req.body;
+        
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'text/plain');
+        
         loginValidator(body);
 
         const {

@@ -1,4 +1,4 @@
-const { ValidationError } = require("../utils/errors");
+const { ValidationError } = require("../classes/errors");
 
 function isNomeValido(nome) {
     const nomeRegex = new RegExp(/[a-z,A-Z,á,é,í,ó,ú,â,ê,ô,ã,õ,ç,Á,É,Í,Ó,Ú,Â,Ê,Ô,Ã,Õ,Ç,ü,ñ,Ü,Ñ,' ']+/);

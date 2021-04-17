@@ -4,7 +4,10 @@ function handlerError(error) {
 
 }
  
-function sendFile(req, res, filePath, contentType) {
+function sendFile(req, res) {
+    filePath = req.filePath;
+    contentType = req.contentType;
+
     console.log('Sending file ', filePath);
 
     fs.readFile(filePath, (error, content) => {
@@ -12,14 +15,14 @@ function sendFile(req, res, filePath, contentType) {
         res.setHeader('Content-Type', contentType);
 
         if (error) {
-        if(error.code == 'ENOENT'){
-            res.statusCode = 404;
-            res.end('Sorry, page not found');
-        }
-        else {
-            res.statusCode = 500;
-            res.end('Internal server error');
-        }
+            if(error.code == 'ENOENT'){
+                res.statusCode = 404;
+                res.end('Sorry, file not found');
+            }
+            else {
+                res.statusCode = 500;
+                res.end('Internal server error');
+            }
         }
         else {
             res.end(content, 'utf-8');

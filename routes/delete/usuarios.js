@@ -1,8 +1,8 @@
 const database = require("../../database/setup")
 
-module.exports = (req, res, params) => {
+module.exports = (req, res) => {
     try {
-        console.log('Requested delete usuarios');
+        console.log('DELETE usuarios');
 
         res.statusCode = 200;
         res.setHeader('Content-Type', 'text/plain');

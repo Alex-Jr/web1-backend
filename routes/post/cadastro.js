@@ -1,13 +1,13 @@
 const cadastroValidator = require("../../validator/cadastro");
 const database = require("../../database/setup");
 
-module.exports = (req, res, body) => {
-    console.log('Rota post cadastro', body)
-    
-    res.setHeader('Content-Type', 'text/plain');
-    res.statusCode = 200;
-
+module.exports = (req, res) => {    
     try {
+        const body = req.body;
+    
+        res.setHeader('Content-Type', 'text/plain');
+        res.statusCode = 200;
+
         cadastroValidator(body);
 
         const {
