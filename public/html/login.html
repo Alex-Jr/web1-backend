@@ -17,10 +17,17 @@
             const xhttp = new XMLHttpRequest();
 
             xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.cookie = `user=${this.responseText}`;
-                    document.cookie = 'logged=true';
-                    window.location.assign("/home.html");
+                if (this.readyState == 4) {
+                    switch(this.status) {
+                            case 200:
+                                document.cookie = `user=${this.responseText}`;
+                                document.cookie = 'logged=true';
+                                window.location.assign("/home.html");
+                            break
+                            default: 
+                                document.getElementById('texto_erro').innerHTML = this.responseText;
+                            break
+                        }
                 }
             };
 
@@ -42,7 +49,7 @@
             <img src="copo.jpeg" alt="Imagem Login">
         </div> -->
         <div id="login_dados">
-            <form id="conteudo"> 
+            <form id="formulario"> 
                 <h2>Email</h2>
                 <input type="email" id="email" name="email">
 

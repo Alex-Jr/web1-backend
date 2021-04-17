@@ -1,5 +1,6 @@
 const perfilValidator = require("../../validator/perfil");
 const database = require("../../database/setup");
+const { ValidationError } = require("../../utils/errors");
 
 module.exports = (req, res, body) => {
     console.log('Rota post perfil', body)
@@ -22,19 +23,33 @@ module.exports = (req, res, body) => {
         }
 
         if(sql === 'update usuario set ') {
-            throw new Error('Enviar um campo é obrigatório');
+            throw new ValidationError('Enviar um campo é obrigatório');
         }
 
         sql += `where id = ?`
         values.push(id);
         
         database.query(sql, values, (errors, results, fields ) => {
-            console.log(errors, results);
-            res.end('ok');
+            if(errors) {
+                res.statusCode = 500;
+                res.end('Internal server error');
+            } else {
+                res.end('ok');
+            }
         });
     } catch (err) {
         console.warn(err);
-        res.end(err.message);
+
+        switch (err.name) {
+            case 'ValidationError': 
+                res.statusCode = 400;
+                res.end(err.message)
+                break
+            default :
+                res.statusCode = 500;
+                res.end('Internal server error');
+                break;
+        }
     }
     
 }

@@ -3,6 +3,10 @@ const database = require("../../database/setup");
 
 module.exports = (req, res, body) => {
     console.log('Rota post cadastro', body)
+    
+    res.setHeader('Content-Type', 'text/plain');
+    res.statusCode = 200;
+
     try {
         cadastroValidator(body);
 
@@ -19,12 +23,31 @@ module.exports = (req, res, body) => {
         const values = [ nome, email, senha, cpf, datanasc, telefone.replace('-', '')]; 
 
         database.query(sql, values, (errors, results, fields ) => {
-            console.log(errors, results);
-            res.end('ok');
+            if(errors) {
+                if(errors.code === 'ER_DUP_ENTRY') {
+                    res.statusCode = 409;
+                    res.end(errors.sqlMessage);
+                } else {
+                    res.statusCode = 500;
+                    res.end('Internal server error');
+                }
+            } else {
+                res.end('ok');
+            }
         });
     } catch (err) {
         console.warn(err);
-        res.end('Falha');
+
+        switch (err.name) {
+            case 'ValidationError': 
+                res.statusCode = 400;
+                res.end(err.message)
+                break
+            default :
+                res.statusCode = 500;
+                res.end('Internal server error');
+                break;
+        }
     }
     
 }

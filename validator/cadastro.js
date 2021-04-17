@@ -1,3 +1,5 @@
+const { ValidationError } = require("../utils/errors");
+
 function isNomeValido(nome) {
     const nomeRegex = new RegExp(/[a-z,A-Z,á,é,í,ó,ú,â,ê,ô,ã,õ,ç,Á,É,Í,Ó,Ú,Â,Ê,Ô,Ã,Õ,Ç,ü,ñ,Ü,Ñ,' ']+/);
 
@@ -109,7 +111,7 @@ module.exports = (body) => {
     if(!isTelefoneValido(telefone)) validationErrors.push('Telefone inválido');
 
     if(validationErrors.length > 0) {
-        throw new Error(validationErrors.join('/'));
+        throw new ValidationError(validationErrors.join('/'));
     }
 
     return body;
