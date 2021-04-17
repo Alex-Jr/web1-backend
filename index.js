@@ -1,30 +1,48 @@
-// carrega o .env no process.env
 require('dotenv').config()
+const mysql = require('mysql');
+const http = require('http');
+const fs = require('fs');
+const path = require('path');
 
-// não sei como resolver o problema error self signed certificate...
-process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
+const routes = require('./routes');
 
-const { Client } = require('pg');
+const db = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'root',
+  password : 'password',
+  database : 'web1'
+});
 
-const client = new Client({ssl: true})
+const server = http.createServer((req, res) => {
+  const page =  routes[req.url];
 
-async function main () {
-  try {
-    // procurará pelas infos para conectar ao banco em process.env
-    await client.connect();
-     
-    const res =  await client.query(`SELECT table_name from information_schema.tables where table_schema = 'public' `);
-    console.log(res.rows);
+  render(req, res, page);
+});
+
+function render(req, res, page) {
+  const pagesPath = path.resolve(__dirname, '/pages');
+
+  fs.readFile("./pages/home.html", (error, content) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/html');
   
-  } catch(err) {
-    console.error(err);
-  } finally {
-    await client.end();
-  }
-}
+    if (error) {
+      if(error.code == 'ENOENT'){
+        res.statusCode = 404;
+        res.end('Sorry, page not found');
+      }
+      else {
+        res.statusCode = 500;
+        res.end('Internal server error');
+      }
+    }
+    else {
+        res.end(content, 'utf-8');
+    }
+  })
+};
 
-try {
-  main()
-} catch (err) {
-  console.error(err);
-}
+server.listen(8080, 'localhost', () => {
+  db.connect();
+  console.log('Server running at http://localhost:8080');
+})
