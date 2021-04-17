@@ -8,6 +8,8 @@ const mimeTypes = require('./utils/mimeTypes');
 const foldersByExt = require('./utils/foldersByExt');
 
 const postRoutes = require('./routes/post');
+const getRoutes = require('./routes/get');
+
 const database = require('./database/setup');
 
 const server = http.createServer((req, res) => {
@@ -30,11 +32,17 @@ const server = http.createServer((req, res) => {
   } else if(req.method === 'GET') {
     const extname = String(path.extname(req.url)).toLowerCase();
 
-    const filePath = `public/${foldersByExt[extname]}${req.url}`
-  
-    const contentType = mimeTypes[extname] || 'application/octet-stream';
-  
-    sendFile(req, res, filePath, contentType);
+    if(extname) {
+      const filePath = `public/${foldersByExt[extname]}${req.url}`
+    
+      const contentType = mimeTypes[extname] || 'application/octet-stream';
+    
+      sendFile(req, res, filePath, contentType);
+
+    } else {
+      getRoutes[req.url.slice(1)](req, res)
+    }
+
   }
   
   

@@ -23,7 +23,6 @@ module.exports = (req, res, body) => {
         const values = [email, senha]; 
 
         database.query(sql, values, (errors, results, fields ) => {
-            console.log(errors, results);
             res.statusCode = 200;
             res.setHeader('Content-Type', 'text/plain');
 
