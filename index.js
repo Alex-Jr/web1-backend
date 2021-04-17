@@ -9,10 +9,14 @@ const foldersByExt = require('./utils/foldersByExt');
 
 const postRoutes = require('./routes/post');
 const getRoutes = require('./routes/get');
+const deleteRoutes = require('./routes/delete');
 
 const database = require('./database/setup');
+const parseCookie = require('./utils/parseCookie');
 
 const server = http.createServer((req, res) => {
+  req.headers.cookie = parseCookie(req.headers.cookie);
+
   console.log('Requested: ', req.url);
 
   if(req.method === 'POST') {
@@ -63,9 +67,10 @@ const server = http.createServer((req, res) => {
       getRoutes[url](req, res, parsedParams);
     }
 
+  } else if (req.method === 'DELETE' ) {
+    deleteRoutes[req.url.slice(1)](req, res);
   }
-  
-  
+
 });
 
 server.listen(8080, 'localhost', () => {

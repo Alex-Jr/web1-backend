@@ -6,11 +6,30 @@
         <!-- <script type="text/javascript" src="perfil.js"></script> -->
 
         <script type="text/javascript" src="loggedPage.js"></script>
+
+        <script>
+            function deletarConta() {
+                const xhttp = new XMLHttpRequest();
+    
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        logout()
+                    }
+                };
+    
+                xhttp.open("DELETE", `usuarios`, true);
+    
+                xhttp.send();
+            }
+        </script>
+
     </head>
     <body>
-        <button name="voltarhome" class="botao">Voltar</button>
+        <a href="/home.html">
+            <button name="voltarhome" class="botao">Voltar</button>
+        </a>
         <h1>Editar Perfil</h1>
-        <form id="formulario" action="/cadastro.html" method="POST">
+        <form id="formulario" action="/perfil.html" method="POST">
                 <div class='campo' id="erronome">
                     <label for="nome">Nome:</label>
                     <input type="text" id="nome" name="nome">
@@ -33,12 +52,12 @@
 
                 <div class="campo" id="erronovasenha">
                     <label for="novasenha">Nova Senha:</label>
-                    <input type="password" id="novasenha" name="novasenha">
+                    <input type="password" id="novasenha" name="senha">
                 </div>
                 
                 <div class="campo" id="erronovasenhaconf">
                     <label for="confnovasenha">Confirmar Nova Senha:</label>
-                    <input type="password" id="confnovasenha" name="confnovasenha"><br>
+                    <input type="password" id="confnovasenha" name="confsenha"><br>
                 </div>
                 
                 <div class="campo" id="errotel">
@@ -49,7 +68,7 @@
                 <div class="botoes">
                     <!-- <input type="button" name="reset" value="Reset" class="botao" onclick="resetar()"> -->
 
-                    <button type="submit" name="confirmar" class="botao"> Confirmar </button>
+                    <button type="submit" name="confirmar" class="botao" onclick=""> Confirmar </button>
                     <div id="errogeral"></div>
                 </div>
                 
@@ -57,7 +76,7 @@
         </form>
         <div>
             <h1>Zona Perigosa</h1>
-            <button name="excluir" class="botao">Excluir conta</button>
+            <button name="excluir" class="botao" onclick="deletarConta()">Excluir conta</button>
         </div>
 
     </body>
