@@ -23,6 +23,7 @@ const server = http.createServer((req, res) => {
     req.on('end', () => {
       body = parse(body);
     
+      // crasha o app se a rota não existir
       postRoutes[req.url.slice(1)](req, res, body);
     });
 

@@ -92,7 +92,6 @@ module.exports = (body) => {
       telefone,
     } = body;
 
-
     const validationErrors = [];
     
     if(!isNomeValido(nome)) validationErrors.push('Nome inválido');

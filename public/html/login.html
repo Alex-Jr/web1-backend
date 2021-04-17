@@ -16,21 +16,21 @@
             <img src="copo.jpeg" alt="Imagem Login">
         </div> -->
         <div id="login_dados">
-            <div id="conteudo">
+            <form id="conteudo" action="login.html" method="POST">
                 <h2>Email</h2>
-                <input type="email" id="email">
+                <input type="email" id="email" name="email">
 
                 <h2>Senha</h2>
-                <input type="password" id="senha"><br>
+                <input type="password" id="senha" name="senha"><br>
 
-                <button type="button" onclick="entrar()">ENTRAR</button>
+                <button type="submit">ENTRAR</button>
 
                 <div id="div_textos">
                     <p id="texto_erro"></p>
                     <a href="cadastro.html">Não tem cadastro?</a>
                 </div>
 
-            </div>
+            </form>
         </div>
     </div>
 </body>
