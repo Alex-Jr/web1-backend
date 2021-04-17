@@ -40,7 +40,27 @@ const server = http.createServer((req, res) => {
       sendFile(req, res, filePath, contentType);
 
     } else {
-      getRoutes[req.url.slice(1)](req, res)
+      // /usuarios?nome=123
+      // usuarios?nome=123
+      // ['usuarios', ['nome=123', 'a=2']]
+
+      const [url, ...params] = req.url.slice(1).split('?');
+
+      const parsedParams = {};  
+      
+      if(params.length > 0) {
+        params.forEach(param => {
+          // 'nome=123'
+          // [nome, 123]
+
+          const [key, value] = param.split('=')
+
+          // parsedParams.nome = 123  
+          parsedParams[key] = value;
+        });
+      }
+
+      getRoutes[url](req, res, parsedParams);
     }
 
   }
