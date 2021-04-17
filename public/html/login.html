@@ -8,6 +8,24 @@
     <!-- <link rel="stylesheet" type="text/css" href="login.css"> -->
     <!-- <script type="text/javascript" src="login.js"></script> -->
     <title>Login</title>
+    
+    <script>
+        function login() {
+            console.log('login');
+            const xhttp = new XMLHttpRequest();
+
+            xhttp.onreadystatechange = function() {
+                console.log(this);
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("texto_erro").innerHTML = this.responseText;
+                }
+            };
+
+            xhttp.open("POST", "login.html", true);
+
+            xhttp.send("email=alex@gmail.com&senha=123456");
+        }
+    </script>
 </head>
 
 <body>
@@ -16,23 +34,39 @@
             <img src="copo.jpeg" alt="Imagem Login">
         </div> -->
         <div id="login_dados">
-            <form id="conteudo" action="login.html" method="POST">
+            <form id="conteudo"> 
                 <h2>Email</h2>
                 <input type="email" id="email" name="email">
 
                 <h2>Senha</h2>
                 <input type="password" id="senha" name="senha"><br>
 
-                <button type="submit">ENTRAR</button>
+                <button type="button" onclick="login()">ENTRAR</button>
 
                 <div id="div_textos">
-                    <p id="texto_erro"></p>
+                       <p id="texto_erro"></p>
                     <a href="cadastro.html">Não tem cadastro?</a>
                 </div>
 
             </form>
         </div>
     </div>
+
+    <script>
+        const element = document.getElementById('conteudo');
+        if (element.addEventListener) {
+            element.addEventListener("submit", function(evt) {
+                evt.preventDefault();
+                window.history.back();
+            }, true);
+        }
+        else {
+            element.attachEvent('onsubmit', function(evt){
+                evt.preventDefault();
+                window.history.back();
+            });
+        }
+    </script>
 </body>
 
 </html>
