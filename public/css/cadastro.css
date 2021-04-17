@@ -1,0 +1,39 @@
+body {
+    background-color: #1A1B1C;
+    
+}
+
+p{
+    margin-bottom:15px;
+}
+
+#formulario {
+    background-color: #303030;
+    width: 66%;
+    margin: auto;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 36px;
+    text-align: center;
+    
+}
+
+input {
+    border-radius: 8px;
+    background-color: #444444;
+    border: none;
+    color: #ffffff;
+    height: 1.5em;
+}
+
+.botao{
+    background-color: #9F178C;
+    color: #ffffff;
+    border: none;
+    width: 20%;
+}
+
+h1{
+    text-align: center;
+    font-size: 36px;
+}
