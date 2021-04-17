@@ -1,30 +1,94 @@
 <html>
     <head>
+        <script type="text/javascript" src="loggedPage.js"></script>
         <title>Homepage</title>
+
+        <script>
+            // var new_row = document.createElement('div');
+            // new_row.className = "aClassName";
+            function calculaIdade(data) {
+                const hoje = new Date();
+                const nasc  = new Date(data);
+        
+                const mes = hoje.getMonth() - nasc.getMonth();
+                let idade = hoje.getFullYear() - nasc.getFullYear();
+
+                if (mes < 0 || (mes === 0 && hoje.getDate() < nasc.getDate())){
+                    idade--;
+                };
+
+                return idade;
+            }
+        
+            function renderData(rows) {
+                if(rows.length === 0) return; 
+
+                const table = document.getElementById("dados");
+                
+                rows.forEach(row => {
+                    const tr = document.createElement("tr");
+
+                    const td = document.createElement("td");
+                    const text = document.createTextNode(row.nome);
+                    td.appendChild(text);
+                    
+                    const td2 = document.createElement("td");
+                    const text2 = document.createTextNode(row.email);
+                    td2.appendChild(text2);
+            
+                    const td3 = document.createElement("td");
+                    const text3 = document.createTextNode(calculaIdade(row.data_nasc));
+                    td3.appendChild(text3);
+
+                    tr.appendChild(td);
+                    tr.appendChild(td2)
+                    tr.appendChild(td3)
+                    
+                    table.appendChild(tr);               
+                });
+
+            }
+        </script>
+
+        <script>
+            function buscar() {
+                const xhttp = new XMLHttpRequest();
+    
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                       renderData(JSON.parse(this.responseText))
+                    }
+                };
+    
+                xhttp.open("GET", "usuarios", true);
+    
+                xhttp.send();
+            }
+        </script>
     </head>
 
-    <script>
-        function logout() {
-          document.cookie = 'logged=false';
-          document.cookie = 'user=false';
-          window.location.assign("/login.html");
-        } 
-    </script>
-
-    <script>
-        const cookies = Object.fromEntries(document.cookie.split('; ').map(x => x.split('=')));
-        //  check if user is logged >
-        if(cookies.logged === 'true') {
-          const user = JSON.parse(cookies.user);
-        } else {  
-            window.location.assign("/login.html");
-        }
-    </script>
-    
+   
     <body>
         <div>
-            <input type="text">
+            <img src="">   
             <button onclick="logout()">Logout</button>
+            <button>Editar</button>
+        </div>
+        <br>
+
+        <div>
+            <div>
+                <input type="text">
+                <button onclick="buscar()">BUSCAR</button>
+            </div>
+
+            <table id="dados">
+                <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Idade</th>
+                </tr>    
+            </table>
         </div>
     </body>
 </html>

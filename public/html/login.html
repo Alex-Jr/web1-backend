@@ -7,17 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link rel="stylesheet" type="text/css" href="login.css"> -->
     <!-- <script type="text/javascript" src="login.js"></script> -->
+    <script type="text/javascript" src="formulario.js"></script>
+    <script type="text/javascript" src="notLoggedPage.js"></script>
+
     <title>Login</title>
 
-    <script> //POR ENQUANTO
-        const cookies = Object.fromEntries(document.cookie.split('; ').map(x => x.split('=')));
-        //  check if user is logged >
-        if(cookies.logged === 'true') {
-            window.location.assign("/home.html");
-        }
-    </script>
-    
-    
     <script>
         function login() {
             const xhttp = new XMLHttpRequest();
@@ -39,23 +33,7 @@
         }
     </script>
 
-    <script>
-        window.addEventListener('load', function () {
-            const element = document.getElementById('conteudo');
-            if (element.addEventListener) {
-                element.addEventListener("submit", function(evt) {
-                    evt.preventDefault();
-                    window.history.back();
-                }, true);
-            }
-            else {
-                element.attachEvent('onsubmit', function(evt){
-                    evt.preventDefault();
-                    window.history.back();
-                });
-            }
-        })
-    </script>
+    
 </head>
 
 <body>
