@@ -120,43 +120,43 @@ function cadastrar(){
     }
     else {
         if (validarNome(nome.value) == false){
-            document.getElementById("errogeral").innerHTML = "Campos obrigatórios!";
+            document.getElementById("erronome").innerHTML = "Nome inválido!";
         };
         
         if (validacaoEmail(email.value) == false){
-            document.getElementById("errogeral").innerHTML = "Campos obrigatórios!";
+            document.getElementById("erroemail").innerHTML = "E-mail inválido!";
         };
 
         if (validarData(datanasc.value) == false){
-            document.getElementById("errogeral").innerHTML = "Campos obrigatórios!";
+            document.getElementById("errodata").innerHTML = "Data inválida!";
         };
 
         if (validarcpf(cpf.value) == false){
-            document.getElementById("errogeral").innerHTML = "Campos obrigatórios!";
+            document.getElementById("errocpf").innerHTML = "CPF inválido!";
         };
 
-        if (validacaoSenha(senha) == false){
-            document.getElementById("errogeral").innerHTML = "Campos obrigatórios!";
+        if (validacaoSenha(senha.value) == false){
+            document.getElementById("errosenha").innerHTML = "Senha inválida!";
         };
 
-        if (confirmarSenha(confsenha) == false){
-            document.getElementById("errogeral").innerHTML = "Senha incompatível";
+        if (confirmarSenha(confsenha.value) == false){
+            document.getElementById("errosenhaconf").innerHTML = "Senha incompatível";
         };
 
         if (validarTelefone(telefone.value) == false){
-            document.getElementById("errogeral").innerHTML = "Campos obrigatórios!"
+            document.getElementById("errotel").innerHTML = "Telefone inválido!"
         };
 
         return console.log('safe');
     };
 };
 
-function resetar(){
-    "" = document.getElementById("nome");
-    "" = document.getElementById("email");
-    "" = document.getElementById("datanasc");
-    "" = document.getElementById("cpf");
-    "" = document.getElementById("senha");
-    "" = document.getElementById("confsenha");
-    "" = document.getElementById("telefone");
-}
+/*function resetar(){
+    "" = document.getElementById("nome").value;
+    "" = document.getElementById("email").value;
+    "" = document.getElementById("datanasc").value;
+    "" = document.getElementById("cpf").value;
+    "" = document.getElementById("senha").value;
+    "" = document.getElementById("confsenha").value;
+    "" = document.getElementById("telefone").value;
+}*/

@@ -53,6 +53,7 @@
         background-color: rgb(68,68,68);
         border-radius: 10px;
         border-color: rgb(68,68,68);
+        border: none;
     }
     button{
         width: 100%;
@@ -60,6 +61,7 @@
         background-color: rgb(159,23,140);
         border-radius: 10px;
         color: white;
+        border: none;
     }
     #div_textos{
         width: 100%;
