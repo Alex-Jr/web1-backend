@@ -36,33 +36,43 @@ function entrar(){
     //verificar se campos estão vazios
     if(email.value =="" && senha.value==""){
         document.getElementById("texto_erro").innerHTML = "Email e senha obrigatórios!";
+        email.style.border="solid";
+        senha.style.border="solid";
+
         email.style.borderColor="red";
         senha.style.borderColor="red";
         return;
     }else if(email.value == ""){
         document.getElementById("texto_erro").innerHTML = "Email obrigatório!";
+        email.style.border="solid";
         email.style.borderColor="red";
-        senha.style.borderColor="rgb(68,68,68)";
+
+        senha.style.border="none";
         return;
     }else if(senha.value==""){
         document.getElementById("texto_erro").innerHTML = "Senha obrigatória!";
+        senha.style.border="solid";
         senha.style.borderColor="red";
-        email.style.borderColor="rgb(68,68,68)";
+        email.style.border="none";
         return;
     }
     //validando inputs
     else if(validacaoSenha(senha.value)==false){
         document.getElementById("texto_erro").innerHTML = "Senha inválida!";
+        senha.style.border="solid";
         senha.style.borderColor="red";
-        email.style.borderColor="rgb(68,68,68)";
+        email.style.border="none";
         return;
     }
     else if(validacaoEmail(email.value)==false){ 
         document.getElementById("texto_erro").innerHTML = "Email inválido!";
+        email.style.border="solid";
         email.style.borderColor="red";
-        senha.style.borderColor="rgb(68,68,68)";
+        senha.style.border="none";
         return;
     }else{  //SO PRA TESTAR, ENQUANTO NÃO TEMOS BACKEND
         document.getElementById("texto_erro").innerHTML = "OK";
+        email.style.border="none";
+        senha.style.border="none";
     }
 } 
