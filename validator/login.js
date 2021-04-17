@@ -1,3 +1,5 @@
+const { ValidationError } = require("../utils/errors");
+
 function isEmailValido(email) {
     const emailRegex = new RegExp(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
 
@@ -21,7 +23,7 @@ module.exports = (body) => {
     if(!isSenhaValida(senha)) validationErrors.push('Senha é obrigatória');
 
     if(validationErrors.length > 0) {
-        throw new Error(validationErrors.join('/'));
+        throw new ValidationError(validationErrors.join('/'));
     }
 
     return body;

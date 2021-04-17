@@ -6,7 +6,8 @@
         <!-- <script type="text/javascript" src="perfil.js"></script> -->
 
         <script type="text/javascript" src="loggedPage.js"></script>
-
+        <script type="text/javascript" src="formulario.js"></script>
+    
         <script>
             function deletarConta() {
                 const xhttp = new XMLHttpRequest();
@@ -16,10 +17,42 @@
                         logout()
                     }
                 };
-    
+
                 xhttp.open("DELETE", `usuarios`, true);
     
                 xhttp.send();
+            }
+
+            function editar() {
+                console.log('EDITAR');
+                const xhttp = new XMLHttpRequest();
+    
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4) {
+                        switch(this.status) {
+                            case 200:
+                                alert('ok');
+                            default:
+                                document.getElementById('errogeral').innerHTML = this.responseText;
+                                break
+                        }
+                    }
+                    
+
+                };
+
+                xhttp.open("POST", 'perfil.html', true);
+
+                let bodyRequest = ''
+
+                const form = document.forms['formulario'];
+
+                for (input of form) {
+                    if(!input.name) continue;
+                    bodyRequest += `${input.name}=${input.value}&`;
+                }
+
+                xhttp.send(bodyRequest);
             }
         </script>
 
@@ -29,7 +62,7 @@
             <button name="voltarhome" class="botao">Voltar</button>
         </a>
         <h1>Editar Perfil</h1>
-        <form id="formulario" action="/perfil.html" method="POST">
+        <form id="formulario">
                 <div class='campo' id="erronome">
                     <label for="nome">Nome:</label>
                     <input type="text" id="nome" name="nome">
@@ -68,7 +101,7 @@
                 <div class="botoes">
                     <!-- <input type="button" name="reset" value="Reset" class="botao" onclick="resetar()"> -->
 
-                    <button type="submit" name="confirmar" class="botao" onclick=""> Confirmar </button>
+                    <button onclick="editar()"> Confirmar </button>
                     <div id="errogeral"></div>
                 </div>
                 

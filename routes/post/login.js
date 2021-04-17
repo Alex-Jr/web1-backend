@@ -11,6 +11,10 @@ const { ServerResponse } = require('http')
  */
 module.exports = (req, res, body) => {
     console.log('Rota post login', body)
+
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain');
+
     try {
         loginValidator(body);
 
@@ -23,14 +27,34 @@ module.exports = (req, res, body) => {
         const values = [email, senha]; 
 
         database.query(sql, values, (errors, results, fields ) => {
-            res.statusCode = 200;
-            res.setHeader('Content-Type', 'text/plain');
+            if(errors) {
+                res.statusCode = 500;
+                res.end('Internal server error');
+            } else {
+                if(results.length === 0) {
+                    res.statusCode = 401;
+                    res.end('Login ou senha inválidos');
+                } else {
+                    res.end(JSON.stringify(results[0]));
+                }
 
-            res.end(JSON.stringify(results[0]));
+            }
+
+
         }); 
     } catch (err) {
         console.warn(err);
-        res.end('Falha');
+
+        switch (err.name) {
+            case 'ValidationError': 
+                res.statusCode = 400;
+                res.end(err.message)
+                break
+            default :
+                res.statusCode = 500;
+                res.end('Internal server error');
+                break;
+        }
     }
     
 }

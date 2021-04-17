@@ -5,11 +5,44 @@
         <!-- <link rel="stylesheet" href="cadastro.css"> -->
         <!-- <script type="text/javascript" src="cadastro.js"></script> -->
         <script type="text/javascript" src="notLoggedPage.js"></script>
+        <script type="text/javascript" src="formulario.js"></script>
+
+        <script>
+            function cadastrar() {
+                const xhttp = new XMLHttpRequest();
+    
+                xhttp.onreadystatechange = function() {
+                    if(this.readyState == 4) {
+                        switch(this.status) {
+                            case 200:
+                                window.location.assign("/login.html");
+                                break
+                            default: 
+                                document.getElementById('errogeral').innerHTML = this.responseText;
+                                break
+                        }
+                    }
+                };
+    
+                xhttp.open("POST", `cadastro.html`, true);
+
+                let bodyRequest = ''
+
+                const form = document.forms['formulario'];
+
+                for (input of form) {
+                    if(!input.name) continue;
+                    bodyRequest += `${input.name}=${input.value}&`;
+                }
+                
+                xhttp.send(bodyRequest);
+            }
+        </script>
     </head>
     <body>
 
         <h1>Cadastre-se</h1>
-        <form id="formulario" action="/cadastro.html" method="POST">
+        <form id="formulario" name="formulario">
                 <div class='campo' id="erronome">
                     <label for="nome">Nome:</label>
                     <input type="text" id="nome" name="nome">
@@ -48,7 +81,7 @@
                 <div class="botoes">
                     <!-- <input type="button" name="reset" value="Reset" class="botao" onclick="resetar()"> -->
 
-                    <button type="submit" name="enviar" class="botao"> Enviar </button>
+                    <button type="button" class="botao" onclick="cadastrar()"> Enviar </button>
                     <div id="errogeral"></div>
                 </div>
                 

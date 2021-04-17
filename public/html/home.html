@@ -65,7 +65,19 @@
     
                 xhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
-                       renderData(JSON.parse(this.responseText))
+                        
+                        switch (this.status) {
+                            case 200: 
+                                renderData(JSON.parse(this.responseText));
+                                break;
+                            case 400:
+                                document.getElementById('error').innerHTML = this.responseText;
+                                break;
+                            default:
+                            res.statusCode = 500;
+                            res.end('Internal server error');
+                            break;
+                        }
                     }
                 };
     
