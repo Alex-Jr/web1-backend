@@ -21,9 +21,18 @@
             }
         
             function renderData(rows) {
+                const table = document.getElementById("dados");
+
+                table.innerHTML = `
+                    <tr>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Idade</th>
+                    </tr>    
+                `;
+    
                 if(rows.length === 0) return; 
 
-                const table = document.getElementById("dados");
                 
                 rows.forEach(row => {
                     const tr = document.createElement("tr");
@@ -74,7 +83,9 @@
         <div>
             <img src="">   
             <button onclick="logout()">Logout</button>
-            <button>Editar</button>
+            <a href="/perfil.html">
+                <button > Editar</button>
+            </a>
         </div>
         <br>
 
@@ -85,11 +96,7 @@
             </div>
 
             <table id="dados">
-                <tr>
-                    <th>Nome</th>
-                    <th>Email</th>
-                    <th>Idade</th>
-                </tr>    
+
             </table>
         </div>
     </body>
