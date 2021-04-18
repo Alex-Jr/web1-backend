@@ -39,6 +39,7 @@
 .Login_button {
     border: none;
     border-radius: 25px;
+    color: white
 }
 
 .Login_label {
@@ -46,23 +47,27 @@
 }
 
 .Login_input {
+    height: 35px;
+    line-height: 15px;
     background-color: rgb(68, 68, 68);
+    padding: 0 15px;
+
 }
 
 .Login_input:focus {
     outline: none;
     border: 1px solid rgb(159, 23, 140);
     height: 33px;
+    padding: 0 14px;
+
 }
 
 .Login_button {
     background-color: rgb(159, 23, 140);
-    color: white
 }
 
 .Login_button:hover {
     background-color: rgb(169, 26, 150);
-    color: white
 }
 
 .Login_textos {
