@@ -1,76 +1,79 @@
-/* Incompleto, falta resolver uns problemas de dimensões, 
-    e botar o link no canto direito da div */
+.Login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(26, 26, 26);
+}
 
-    *{
-        margin: 0;
-        padding: 0;
-    }
-    body{
-        background-color: rgb(18,18,18);;
-        
-        margin-top: 7%;
-        justify-content: center;
-    }
-    #container{
-        background-color: rgb(48,48,48);
-        width: 60%;
-        margin-left: 20%;
-        height: 350px;
-        display: flex;
-    
-    }
-    #imagem , #login_dados{
-        height: 100%;
-    }
-    #imagem{
-        width: 35%;
-    }
-    img{
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-    #login_dados{
-        width: 65%;
-    }
-    #conteudo{
-        width: 80%;
-        margin-left: 10%;
-        height: 80%;
-        margin-top: 10%;
-    }
-    h2,input,button{
-        margin-bottom: 5%;
-    }
-    h2{
-        width: 100%;
-        color: white;
-        font-family: serif;
-    }
-    input{
-        width: 96%;
-        padding: 5px;
-        background-color: rgb(68,68,68);
-        border-radius: 10px;
-        border-color: rgb(68,68,68);
-        border: none;
-    }
-    button{
-        width: 100%;
-        padding: 5px;
-        background-color: rgb(159,23,140);
-        border-radius: 10px;
-        color: white;
-        border: none;
-    }
-    #div_textos{
-        width: 100%;
-        display: flex;
-    }
-    p{
-        color: red;
-        margin-right: 20%;
-    }
-    a{
-        color: rgb(159,23,140);
-    }
+.Login_image,
+.Login_formulario {
+    height: 425px;
+}
+
+.Login_image {
+    width: 275px;
+}
+
+.Login_formulario {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    /* align-items: ; */
+    width: 450px;
+    background-color: rgb(48, 48, 48);
+}
+
+.Login_input,
+.Login_label,
+.Login_button,
+.Login_textos {
+    margin: 0px 50px;
+    height: 35px;
+}
+
+.Login_input,
+.Login_button {
+    border: none;
+    border-radius: 25px;
+}
+
+.Login_label {
+    color: white;
+}
+
+.Login_input {
+    background-color: rgb(68, 68, 68);
+}
+
+.Login_input:focus {
+    outline: none;
+    border: 1px solid rgb(159, 23, 140);
+    height: 33px;
+}
+
+.Login_button {
+    background-color: rgb(159, 23, 140);
+    color: white
+}
+
+.Login_button:hover {
+    background-color: rgb(169, 26, 150);
+    color: white
+}
+
+.Login_textos {
+    align-self: flex-end;
+}
+
+.Login_link {
+    color: rgb(210, 60, 206);
+    text-decoration: none;
+}
+
+.Login_link:hover {
+    color: rgb(220, 63, 216);
+}
