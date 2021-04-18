@@ -1,5 +1,7 @@
 //  check if user is logged >
-if(Object.fromEntries(document.cookie.split('; ').map(x => x.split('='))).logged === 'false') {  
+const cookies = Object.fromEntries(document.cookie.split('; ').map(x => x.split('=')));
+
+if(cookies.logged === 'false') {  
     window.location.assign("/login.html");
 }
 
