@@ -13,3 +13,7 @@ window.addEventListener('load', function () {
         });
     }
 })
+
+function resetar () {
+    document.getElementById("formulario").reset(); 
+}

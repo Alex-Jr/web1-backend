@@ -1,0 +1,125 @@
+.Perfil {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(26, 26, 26);
+}
+
+.Perfil_header,
+.Perfil_formulario {
+    width: 800px;
+    background-color: rgb(48, 48, 48);
+
+}
+.Perfil_header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 30px 15px 30px;
+    border-radius: 15px 15px 0px 0px ;
+}
+
+.Perfil_header .Perfil_botao {
+   width: 100px; 
+   margin-right: 15px;
+}
+
+.Perfil_title {
+    text-align: center;
+    color: white;
+    margin: 0;
+}
+
+.Perfil_formulario {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    height: 450px;
+    padding: 15px 30px 45px 30px;
+    border-radius: 0px 0px 15px 15px ;
+}
+
+.Perfil_campo {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100px;
+    margin: 0 10px;
+}
+
+.Perfil_label {
+    color: white;
+    margin-bottom: 15px;
+}
+
+.Perfil_input,
+.Perfil_botao {
+    border: none;
+    border-radius: 25px;
+    color: white;
+}
+
+.Perfil_input {
+    /* box-sizing: border-box; */
+    height: 35px;
+    line-height: 15px;
+    width: 100%;
+    background-color: rgb(68, 68, 68);
+    padding: 0 15px;
+}
+
+.Perfil_input:focus {
+    outline: none;
+    border: 1px solid rgb(159, 23, 140);
+    padding: 0 14px;
+}
+
+
+.Perfil_botoes {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.Perfil_botao {
+    height: 35px;
+    width: 45%;
+    background-color: rgb(159, 23, 140);
+}
+
+.Perfil_botao:hover {
+    background-color: rgb(169, 26, 150);
+}
+
+.Perfil_perigo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: rgb(48, 48, 48);
+    height: 150px;
+    width: 300px;
+    margin-left: 560px;
+    border-radius: 30px;
+    padding: 0px;
+   
+}
+
+.Perfil_perigo-title{
+    margin: 15px
+}
+
+.Perfil_botao--red {
+    background-color: #d30000;
+}
+
+.Perfil_botao--red:hover {
+    background-color: red
+}
