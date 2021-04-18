@@ -1,6 +1,7 @@
 <html>
     <head>
         <script type="text/javascript" src="loggedPage.js"></script>
+        <link rel="stylesheet" type="text/css" href="home.css">
         <title>Homepage</title>
 
         <script>
@@ -21,32 +22,52 @@
             }
         
             function renderData(rows) {
-                const table = document.getElementById("dados");
+                const table1 = document.getElementById("tabela");
 
-                table.innerHTML = `
+                table1.innerHTML = `
                     <tr>
-                        <th>Nome</th>
-                        <th>Email</th>
-                        <th>Idade</th>
-                    </tr>    
+                        <td>
+                            <table class="Home_table-header">
+                                <tr class="Home_table-header-row">
+                                    <th>Nome</th>
+                                    <th>Email</th>
+                                    <th>Idade</th>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="Home_table-body">
+                                <table id="dados">
+                                </table>  
+                            </div>
+                        </td>
+                    </tr>
                 `;
+
+                const table = document.getElementById("dados");
     
                 if(rows.length === 0) return; 
 
                 
                 rows.forEach(row => {
                     const tr = document.createElement("tr");
+                    tr.className = 'Home_table-body-row';
 
                     const td = document.createElement("td");
                     const text = document.createTextNode(row.nome);
+                    td.className = 'Home_table-body-cell';
                     td.appendChild(text);
                     
                     const td2 = document.createElement("td");
                     const text2 = document.createTextNode(row.email);
+                    td2.className = 'Home_table-body-cell';
                     td2.appendChild(text2);
             
                     const td3 = document.createElement("td");
                     const text3 = document.createTextNode(calculaIdade(row.data_nasc));
+                    td3.className = 'Home_table-body-cell';
                     td3.appendChild(text3);
 
                     tr.appendChild(td);
@@ -91,25 +112,46 @@
     </head>
 
    
-    <body>
-        <div>
-            <img src="">   
-            <button onclick="logout()">Logout</button>
-            <a href="/perfil.html">
+    <body class="Home">
+        <!-- <div class="Home_user">
+            <img class="Home_image" src="">   
+            <button class="Home_logout" onclick="logout()">Logout</button>
+            <a class="Home_perfil" href="/perfil.html">
                 <button > Editar</button>
             </a>
-        </div>
-        <br>
+        </div> -->
+        <div class="Home_conteudo">
+            <h2 class="Home_title"> Buscar </h2>
 
-        <div>
-            <div>
-                <input type="text" id="ipt_nome" name="nome">
-                <button onclick="buscar()">BUSCAR</button>
-            </div>
+            <input class="Home_input" id="ipt_nome" name="nome" placeholder="Pesquisar por nome">
+            
+            <table class="Home_table" id="tabela"> 
+                <tr>
+                  <td>
+                     <table class="Home_table-header">
+                       <tr class="Home_table-header-row">
+                          <th>Nome</th>
+                          <th>Email</th>
+                          <th>Idade</th>
+                       </tr>
+                     </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                     <div class="Home_table-body">
+                       <table class="Home_table-dados" id="dados">
+                       </table>  
+                     </div>
+                  </td>
+                </tr>
+              </table>
+    
+            <button class="Home_botao" onclick="buscar()">BUSCAR</button>
+        </div>    
 
-            <table id="dados">
-
-            </table>
-        </div>
+        <script>
+            buscar();
+        </script>
     </body>
 </html>
