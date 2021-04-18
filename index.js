@@ -11,6 +11,7 @@ const router = require('./routes/router');
 const server = http.createServer((req, res) => {
   req.headers.cookie = parseCookie(req.headers.cookie);
 
+  // body parser
   let body = '';
 
   req.on('data', chunk => {
@@ -23,7 +24,6 @@ const server = http.createServer((req, res) => {
       req.body = body;
       router(req, res);
   });
-
 });
 
 server.listen(8080, 'localhost', () => {
