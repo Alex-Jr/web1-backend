@@ -24,10 +24,10 @@
                                 document.cookie = `user=${this.responseText}`;
                                 document.cookie = 'logged=true';
                                 window.location.assign("/home.html");
-                            break
+                                break
                             default: 
-                                document.getElementById('Login_error').innerHTML = this.responseText;
-                            break
+                               alert(this.responseText);
+                                break
                         }
                 }
             };
