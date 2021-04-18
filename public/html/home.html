@@ -109,17 +109,33 @@
                 xhttp.send();
             }
         </script>
+
+        <script>
+            window.addEventListener('load', function () {
+                const element = document.getElementById('user-nome');
+                // loggedPage.js put cookies as global scope
+                element.innerHTML = JSON.parse(cookies.user).nome
+            })
+        </script>
     </head>
 
    
     <body class="Home">
-        <!-- <div class="Home_user">
-            <img class="Home_image" src="">   
-            <button class="Home_logout" onclick="logout()">Logout</button>
-            <a class="Home_perfil" href="/perfil.html">
-                <button > Editar</button>
-            </a>
-        </div> -->
+        <div class="Home_user">
+            <img class="Home_user-image" src="profile.png">   
+
+            <div class="Home_user-content">
+                <h5 class="Home_user-title">Logado como</h3>
+                <span class="Home_user-nome" id="user-nome">Fulano de tal</span>
+    
+                <div class="Home_user-botoes">
+                    <button class="Home_user-botao" onclick="logout()">Logout</button>
+    
+                    <button class="Home_user-botao" onclick="() => {window.location.assign('/login.html');}"> Editar</button>
+                </div>
+            </div>
+        </div>
+
         <div class="Home_conteudo">
             <h2 class="Home_title"> Buscar </h2>
 
