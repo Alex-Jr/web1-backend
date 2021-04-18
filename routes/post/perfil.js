@@ -34,8 +34,13 @@ module.exports = (req, res) => {
         
         database.query(sql, values, (errors, results, fields ) => {
             if(errors) {
-                res.statusCode = 500;
-                res.end('Internal server error');
+                if(errors.code === 'ER_DUP_ENTRY') {
+                    res.statusCode = 409;
+                    res.end(errors.sqlMessage);
+                } else {
+                    res.statusCode = 500;
+                    res.end('Internal server error');
+                }
             } else {
                 res.end('ok');
             }
