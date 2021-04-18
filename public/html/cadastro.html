@@ -17,8 +17,17 @@
                             case 200:
                                 window.location.assign("/login.html");
                                 break
+                            case 400:
+                                alert(this.response.split('/').join('\n'));
+                                break
+                            case 409:
+                                let msg = 'Já existe um usuário utilizando \n'
+                                let infos = this.response.match(/\'(.*?)\'/g);
+                                msg += infos[0]
+                                alert(msg);
+                                break;
                             default: 
-                                document.getElementById('errogeral').innerHTML = this.responseText;
+                                alert(this.response)
                                 break
                         }
                     }
@@ -38,9 +47,18 @@
                 xhttp.send(bodyRequest);
             }
         </script>
+
+        <script>
+            function resetar () {
+                document.getElementById("formulario").reset(); 
+            }
+        </script>
     </head>
     <body class="Cadastro">
-        <h1 class="Cadastro_title">Cadastre-se</h1>
+        <div class="Cadastro_header">
+            <button class="Cadastro_botao"> VOLTAR </button>
+            <h1 class="Cadastro_title">Cadastre-se</h1>
+        </div>
 
         <form id="formulario" class="Cadastro_formulario">
                 <div class='Cadastro_campo'>

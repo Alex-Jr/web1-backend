@@ -10,18 +10,28 @@
     background-color: rgb(26, 26, 26);
 }
 
-.Cadastro_title,
+.Cadastro_header,
 .Cadastro_formulario {
     width: 800px;
     background-color: rgb(48, 48, 48);
 
+}
+.Cadastro_header {
+    padding: 30px 30px 15px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Cadastro_header .Cadastro_botao {
+   width: 100px; 
+   margin-right: 15px;
 }
 
 .Cadastro_title {
     text-align: center;
     color: white;
     margin: 0;
-    padding: 30px 30px 15px 30px;
     border-radius: 15px 15px 0px 0px ;
 }
 
