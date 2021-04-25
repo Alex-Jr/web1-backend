@@ -1,22 +1,3 @@
-function validacaoEmail(email) {
-  const antes = email.substring(0, email.indexOf('@'));  //antes do primeiro @
-  const depois = email.substring(email.indexOf('@')+ 1, email.length); //depois do primeiro @
-
-  return !(
-    (email.search(' ') != -1) || // caso tenha espaços
-    (email.search('@') == -1) || // caso não tenha @ no email
-    (depois.search('@') != -1) || // caso tenha @ no depois
-    (depois.search(/[.]/g) < 1) || // caso não tenha ponto no depois
-    (depois.lastIndexOf('.') == depois.length - 1) || // caso o ponto seja ultimo caracter
-    (antes.length < 1) || //caso antes seja menor que 1
-    (depois.length < 4)  //caso depois seja menor que 4
-  );
-}
-
-function validacaoSenha(senha) { 
-  return !(senha.length < 5 || senha.length > 25);
-}
-
 function login() {
   let valido = true;
   let errors = [];
@@ -28,13 +9,11 @@ function login() {
     email.value == "" 
     || senha.value == ""
   ){
-    email.setCustomValidity('Email inválido');
-    senha.setCustomValidity('');
     alert("Campos obrigatórios!");
     return;
   }
 
-  if (validacaoEmail(email.value) == false){ 
+  if (validarEmail(email.value) == false){ 
     valido = false;
     email.setCustomValidity('Email inválido');
     errors.push('Email inválido');
@@ -42,7 +21,7 @@ function login() {
     email.setCustomValidity('');
   }
     
-  if (validacaoSenha(senha.value) == false) {
+  if (validarSenha(senha.value) == false) {
     valido = false;
     senha.setCustomValidity('Senha inválida');
     errors.push('Senha inválida');

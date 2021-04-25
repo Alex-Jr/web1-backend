@@ -38,7 +38,7 @@
   /* box-sizing: border-box; */
   height: 35px;
   line-height: 15px;
-  width: 100%;
+  width: 95%;
   background-color: rgb(68, 68, 68);
   padding: 0 15px;
 }
@@ -46,6 +46,7 @@
 .Home_input:focus {
   outline: none;
   border: 1px solid rgb(159, 23, 140);
+  height: 33px;
   padding: 0 14px;
 }
 

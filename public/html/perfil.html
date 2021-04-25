@@ -8,63 +8,10 @@
     
     <script type="text/javascript" src="loggedPage.js"></script>
     <script type="text/javascript" src="formulario.js"></script>
+    <script type="text/javascript" src="validators.js"></script>
+    <script type="text/javascript" src="perfil.js"></script>
     <link rel="stylesheet" type="text/css" href="perfil.css">
   
-    <script>
-      function deletarConta() {
-        const xhttp = new XMLHttpRequest();
-
-        xhttp.onreadystatechange = function() {
-          if (this.readyState == 4 && this.status == 200) {
-            logout()
-          }
-        };
-
-        xhttp.open("DELETE", `usuarios`, true);
-
-        xhttp.send();
-      }
-
-      function editar() {
-        const xhttp = new XMLHttpRequest();
-
-        xhttp.onreadystatechange = function() {
-          if (this.readyState == 4) {
-            switch(this.status) {
-              case 200:
-                alert('Usuário atualizado')
-                window.location.assign("/home.html");
-                break
-              case 400:
-                alert(this.response.split('/').join('\n'));
-                break
-              case 409:
-                let msg = 'Já existe um usuário utilizando \n'
-                let infos = this.response.match(/\'(.*?)\'/g);
-                msg += infos[0]
-                alert(msg);
-                break;
-              default: 
-                alert(this.response)
-                break
-            }
-          }
-        };
-
-        xhttp.open("POST", 'perfil.html', true);
-
-        let bodyRequest = ''
-
-        const form = document.forms['formulario'];
-
-        for (input of form) {
-          if(!input.name) continue;
-          bodyRequest += `${input.name}=${input.value}&`;
-        }
-
-        xhttp.send(bodyRequest);
-      }
-    </script>
 
   </head>
   <body class="Perfil">
@@ -77,32 +24,32 @@
     <form id="formulario" class="Perfil_formulario">
       <div class='Perfil_campo'>
         <h2 class="Perfil_label">Nome:</h2>
-        <input class="Perfil_input" type="text" name="nome">
+        <input class="Perfil_input" type="text" name="nome" id="nome">
       </div>
 
       <div class="Perfil_campo">
         <h2 class="Perfil_label">E-mail:</h2>
-        <input class="Perfil_input" type="text" name="email"><br>
+        <input class="Perfil_input" type="text" name="email" id="email"><br>
       </div>
 
       <div class="Perfil_campo">
         <h2 class="Perfil_label">Nascimento:</h2>
-        <input class="Perfil_input" type="date" name="datanasc">
+        <input class="Perfil_input" type="date" name="datanasc" id="datanasc">
       </div>
 
       <div class="Perfil_campo">
         <h2 class="Perfil_label">CPF:</h2>
-        <input class="Perfil_input" type="text" name="cpf"><br>
+        <input class="Perfil_input" type="text" name="cpf" id="cpf"><br>
       </div>
 
       <div class="Perfil_campo">
         <h2 class="Perfil_label">Senha:</h2>
-        <input class="Perfil_input" type="password" name="senha">
+        <input class="Perfil_input" type="password" id="senha" name="senha">
       </div>
       
       <div class="Perfil_campo">
         <h2 class="Perfil_label">Confirmar Senha:</h2>
-        <input class="Perfil_input" type="password" name="confsenha"><br>
+        <input class="Perfil_input" type="password" id="confsenha" name="confsenha"><br>
       </div>
       
       <div class="Perfil_campo">
