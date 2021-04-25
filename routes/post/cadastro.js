@@ -1,5 +1,6 @@
-const cadastroValidator = require("../../validator/cadastro");
 const database = require("../../database/setup");
+const cadastroValidator = require("../../validator/cadastro");
+const { crypt } = require('../../utils/crypto');
 
 module.exports = (req, res) => {    
     try {
@@ -20,7 +21,7 @@ module.exports = (req, res) => {
         } = body;
 
         const sql = 'insert into usuario(nome, email, senha, cpf, data_nasc, fone) values (?, ?, ?, ?, ?, ?)';
-        const values = [ nome, email, senha, cpf, datanasc, telefone.replace('-', '')]; 
+        const values = [ nome, email, crypt(senha), cpf, datanasc, telefone.replace('-', '')]; 
 
         database.query(sql, values, (errors, results, fields ) => {
             if(errors) {
