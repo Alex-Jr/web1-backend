@@ -16,7 +16,7 @@ try {
     senha,
   } = body;
 
-  const sql = 'select * from usuario where email = ?';
+  const sql = 'select u.nome, u.email, u.data_nasc, u.fone, u.cpf, u.senha from usuario as u where email = ?';
   const values = [email]; 
 
   database.query(sql, values, (errors, results, fields) => {
@@ -33,15 +33,17 @@ try {
       res.end('Email ou senha errados');
       return;
     }
-    const infos = results[0];
+    const user = results[0];
 
-    if(decrypt(infos.senha) !== senha){
+    if(decrypt(user.senha) !== senha){
       res.statusCode = 400;
       res.end('Email ou senha errados');
       return;
     }
 
-    res.end(JSON.stringify(infos));
+    delete user.senha;
+
+    res.end(JSON.stringify(user));
   }); 
 } catch (err) {
   console.warn(err);

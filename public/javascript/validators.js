@@ -76,12 +76,12 @@ function validarSenha(senha){
 function validarData(datanasc){ 
   const dataRegex = new RegExp(/^(\d{4})\-(\d{2})\-(\d{2})/);
 
-  const formatoValido = dataRegex.test(data);
+  const formatoValido = dataRegex.test(datanasc);
 
   if(!formatoValido) return false;
 
   const hoje = new Date();
-  const nasc  = new Date(data);
+  const nasc  = new Date(datanasc);
 
   const mes = hoje.getMonth() - nasc.getMonth();
 
