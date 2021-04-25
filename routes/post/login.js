@@ -16,7 +16,7 @@ try {
     senha,
   } = body;
 
-  const sql = 'select u.nome, u.email, u.data_nasc, u.fone, u.cpf, u.senha from usuario as u where email = ?';
+  const sql = 'select u.nome, u.email, u.data_nasc, u.telefone, u.cpf, u.senha from usuario as u where email = ?';
   const values = [email]; 
 
   database.query(sql, values, (errors, results, fields) => {

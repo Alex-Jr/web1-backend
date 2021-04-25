@@ -20,7 +20,7 @@ module.exports = (req, res) => {
       telefone,
     } = body;
 
-    const sql = 'insert into usuario(nome, email, senha, cpf, data_nasc, fone) values (?, ?, ?, ?, ?, ?)';
+    const sql = 'insert into usuario(nome, email, senha, cpf, data_nasc, telefone) values (?, ?, ?, ?, ?, ?)';
     const values = [ nome, email, crypt(senha), cpf.replace(/[^0-9]/g, ''), datanasc, telefone.replace(/[^0-9]/g, '')]; 
 
     database.query(sql, values, (errors, results, fields ) => {

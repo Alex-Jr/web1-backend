@@ -11,7 +11,7 @@ window.addEventListener('load', function () {
   email.placeholder = parsedCookie.email;
   datanasc.placeholder = parsedCookie.data_nasc.substring(0, parsedCookie.data_nasc.indexOf("T"));
   cpf.placeholder = mascaraCpf(parsedCookie.cpf);
-  telefone.placeholder = mascaraTelefone2(parsedCookie.fone);
+  telefone.placeholder = mascaraTelefone2(parsedCookie.telefone);
 })
 
 
