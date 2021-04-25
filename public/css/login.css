@@ -51,7 +51,6 @@
     line-height: 15px;
     background-color: rgb(68, 68, 68);
     padding: 0 15px;
-
 }
 
 .Login_input:focus {
@@ -59,7 +58,13 @@
     border: 1px solid rgb(159, 23, 140);
     height: 33px;
     padding: 0 14px;
+}
 
+.Login_input:invalid {
+  outline: none;
+  border: 1px solid rgb(255, 23, 140);
+  height: 33px;
+  padding: 0 14px;
 }
 
 .Login_button {

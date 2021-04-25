@@ -36,14 +36,14 @@ module.exports = (req, res) => {
 
       if(results.length === 0) {
         res.statusCode = 401;
-        res.end('Email não encontrado');
+        res.end('Email ou senha errados');
         return;
       }
       const infos = results[0];
 
       if(decrypt(infos.senha) !== senha){
         res.statusCode = 400;
-        res.end('Senha errada');
+        res.end('Email ou senha errados');
         return;
       }
 
