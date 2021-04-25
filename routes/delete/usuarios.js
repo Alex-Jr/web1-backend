@@ -12,6 +12,7 @@ module.exports = (req, res) => {
     
     database.query(sql, values,(errors, results, fields) => {
       if(errors) {
+        console.warn(errors);
         res.statusCode = 500;
         res.end('Internal server error');
       } else {
@@ -19,6 +20,7 @@ module.exports = (req, res) => {
       }
     })
   } catch (err) {
+    console.warn(err);
     res.statusCode = 500;
     res.end('Internal server error');
   }

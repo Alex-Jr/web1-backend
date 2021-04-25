@@ -70,12 +70,18 @@ function validarEmail(email){
 }
 
 function validarSenha(senha){ 
-  return !(senha.length < 5 || senha.length > 25);
+  return 5 < senha.length && senha.length < 25;
 }
 
 function validarData(datanasc){ 
+  const dataRegex = new RegExp(/^(\d{4})\-(\d{2})\-(\d{2})/);
+
+  const formatoValido = dataRegex.test(data);
+
+  if(!formatoValido) return false;
+
   const hoje = new Date();
-  const nasc  = new Date(datanasc);
+  const nasc  = new Date(data);
 
   const mes = hoje.getMonth() - nasc.getMonth();
 
@@ -85,12 +91,11 @@ function validarData(datanasc){
       idade--;
   };
 
-  return (idade < 110 && idade > 0);
+  return (0 < idade && idade < 110);
 }
 
 function validarTelefone(telefone) {
   telefone = telefone.replace(/[^0-9]/g, '');
-  console.log(telefone);
 
   return (telefone.length == 11 || telefone.length == 10);
 }

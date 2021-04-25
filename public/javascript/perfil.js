@@ -1,9 +1,28 @@
-function deletarConta() {
+window.addEventListener('load', function () {
+  const nome = document.getElementById("nome");
+  const email = document.getElementById("email");
+  const datanasc = document.getElementById("datanasc");
+  const cpf = document.getElementById("cpf");
+  const telefone = document.getElementById("telefone");
+
+  const parsedCookie = JSON.parse(cookies.user);
+
+  nome.placeholder = parsedCookie.nome;
+  email.placeholder = parsedCookie.email;
+  datanasc.placeholder = parsedCookie.data_nasc.substring(0, parsedCookie.data_nasc.indexOf("T"));
+  cpf.placeholder = parsedCookie.cpf;
+  telefone.placeholder= parsedCookie.fone;
+})
+
+
+function deletarConta() {   
+  if(!window.confirm("Tem certeza que quer excluir?")) return;
+
   const xhttp = new XMLHttpRequest();
 
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      logout();
+        logout();
     }
   };
 
@@ -23,6 +42,19 @@ function editar() {
   const senha = document.getElementById("senha");
   const confsenha = document.getElementById("confsenha");
   const telefone = document.getElementById("telefone");
+
+  if (
+    email.value == "" 
+    && senha.value == ""
+    && confsenha.value == "" 
+    && nome.value == "" 
+    && datanasc.value == "" 
+    && cpf.value == "" 
+    && telefone.value == ""
+  ) {
+    alert("Todos os campos estão vazios!");
+    return;
+  }
 
   if (nome.value && validarNome(nome.value) == false){
     valido = false;
@@ -64,7 +96,7 @@ function editar() {
     senha.setCustomValidity('');
   };
 
-  if (confsenha.value && confirmarSenha(senha.value, confsenha.value) == false){
+  if (senha.value && confirmarSenha(senha.value, confsenha.value) == false){
     valido = false;
     errors.push("Senha incompatível");
     confsenha.setCustomValidity('Senhas diferentes');
@@ -123,4 +155,3 @@ function editar() {
 
   xhttp.send(bodyRequest);
 };
-
