@@ -7,6 +7,7 @@
     <!-- <script type="text/javascript" src="cadastro.js"></script> -->
     <script type="text/javascript" src="notLoggedPage.js"></script>
     <script type="text/javascript" src="formulario.js"></script>
+    <script type="text/javascript" src= "mascaras.js"></script>
     <script type="text/javascript" src="validators.js"></script>
     <script type="text/javascript" src="cadastro.js"></script>
     <link rel="stylesheet" type="text/css" href="cadastro.css">
@@ -21,37 +22,37 @@
     <form id="formulario" class="Cadastro_formulario">
       <div class='Cadastro_campo'>
         <h2 class="Cadastro_label">Nome:</h2>
-        <input class="Cadastro_input" type="text" name="nome" id="nome">
+        <input class="Cadastro_input" type="text" name="nome" id="nome" placeholder="Fulano de tal">
       </div>
 
       <div class="Cadastro_campo">
         <h2 class="Cadastro_label">E-mail:</h2>
-        <input class="Cadastro_input" type="text" name="email" id="email"><br>
+        <input class="Cadastro_input" type="text" name="email" id="email" placeholder="fulano@gmail.com"><br>
       </div>
 
       <div class="Cadastro_campo">
         <h2 class="Cadastro_label">Nascimento:</h2>
-        <input class="Cadastro_input" type="date" name="datanasc" id="datanasc">
+        <input class="Cadastro_input" type="text" name="datanasc" id="datanasc" placeholder="yyyy-mm-dd" onfocus="(this.type='date')" onblur="{this.type='text'}">
       </div>
 
       <div class="Cadastro_campo">
         <h2 class="Cadastro_label">CPF:</h2>
-        <input class="Cadastro_input" type="text" name="cpf" id="cpf"><br>
+        <input class="Cadastro_input" type="text" name="cpf" id="cpf" placeholder="000.000.000-00" onkeydown="inputCpfMask(this)"><br>
       </div>
 
       <div class="Cadastro_campo">
         <h2 class="Cadastro_label">Senha:</h2>
-        <input class="Cadastro_input" type="password" name="senha" id="senha">
+        <input class="Cadastro_input" type="password" name="senha" id="senha" placeholder="*****">
       </div>
       
       <div class="Cadastro_campo">
         <h2 class="Cadastro_label">Confirmar Senha:</h2>
-        <input class="Cadastro_input" type="password" name="confsenha" id="confsenha"><br>
+        <input class="Cadastro_input" type="password" name="confsenha" id="confsenha" placeholder="******"><br>
       </div>
       
       <div class="Cadastro_campo">
         <h2 class="Cadastro_label">Telefone:</h2>
-        <input class="Cadastro_input" type="tel" name="telefone" id="telefone">
+        <input class="Cadastro_input" type="tel" name="telefone" id="telefone" placeholder="(00) 00000-0000" onkeypress="inputTelMask(this)">
       </div>
 
       <div class="Cadastro_campo Cadastro_botoes">

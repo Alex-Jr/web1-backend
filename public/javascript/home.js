@@ -48,7 +48,10 @@ function renderData(rows) {
 
   const table = document.getElementById("dados");
 
-  if(rows.length === 0) return; 
+  if(rows.length === 0){
+    alert("Nenhum usuário encontrado");
+    return;
+  }
   
   rows.forEach(row => {
     const tr = document.createElement("tr");
