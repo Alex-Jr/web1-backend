@@ -9,6 +9,7 @@
     <script type="text/javascript" src="loggedPage.js"></script>
     <script type="text/javascript" src="formulario.js"></script>
     <script type="text/javascript" src="validators.js"></script>
+    <script type="text/javascript" src= "mascaras.js"></script>
     <script type="text/javascript" src="perfil.js"></script>
     <link rel="stylesheet" type="text/css" href="perfil.css">
   
@@ -39,7 +40,7 @@
 
       <div class="Perfil_campo">
         <h2 class="Perfil_label">CPF:</h2>
-        <input class="Perfil_input" type="text" name="cpf" id="cpf"><br>
+        <input class="Perfil_input" type="text" name="cpf" id="cpf" onkeydown="inputCpfMask(this)"><br>
       </div>
 
       <div class="Perfil_campo">
@@ -54,7 +55,7 @@
       
       <div class="Perfil_campo">
         <h2 class="Perfil_label">Telefone:</h2>
-        <input class="Perfil_input" type="tel" id="telefone" name="telefone">
+        <input class="Perfil_input" type="tel" id="telefone" name="telefone" onkeypress="inputTelMask(this)">
       </div>
 
       <div class="Perfil_campo Perfil_botoes">

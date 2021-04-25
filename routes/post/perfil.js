@@ -34,7 +34,7 @@ module.exports = (req, res) => {
     
     database.query(sql, values, (errors, results, fields ) => {
       if(errors) {
-        console.warn(err);
+        console.warn(errors);
 
         if(errors.code === 'ER_DUP_ENTRY') {
           res.statusCode = 409;

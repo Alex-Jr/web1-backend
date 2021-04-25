@@ -10,8 +10,8 @@ window.addEventListener('load', function () {
   nome.placeholder = parsedCookie.nome;
   email.placeholder = parsedCookie.email;
   datanasc.placeholder = parsedCookie.data_nasc.substring(0, parsedCookie.data_nasc.indexOf("T"));
-  cpf.placeholder = parsedCookie.cpf;
-  telefone.placeholder= parsedCookie.fone;
+  cpf.placeholder = mascaraCpf(parsedCookie.cpf);
+  telefone.placeholder = mascaraTelefone2(parsedCookie.fone);
 })
 
 
