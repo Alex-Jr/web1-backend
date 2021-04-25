@@ -73,7 +73,6 @@ module.exports = (req, res) => {
             selected = true;
             res.statusCode = 405;
             res.end('Method not Allowed');
-
     }
 
     console.log(`${req.method} ${req.url}`);
