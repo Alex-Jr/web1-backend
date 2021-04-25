@@ -78,10 +78,12 @@ function isEmailValido(email) {
 }
 
 function isTelefoneValido(telefone) {
-    const telefoneRegex = new RegExp(/^(\d{5}|\d{4})\D*(\d{4})$/);
-
-    return telefoneRegex.test(telefone);
+    telefone = telefone.replace(/[^0-9]/g, '');
+    console.log(telefone);
+  
+    return (telefone.length == 11 || telefone.length == 10);
 }
+
 
 module.exports = (body) => {
     const {

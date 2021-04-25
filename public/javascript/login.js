@@ -1,4 +1,4 @@
-function validacaoEmail(email){
+function validacaoEmail(email) {
   const antes = email.substring(0, email.indexOf('@'));  //antes do primeiro @
   const depois = email.substring(email.indexOf('@')+ 1, email.length); //depois do primeiro @
 
@@ -13,53 +13,45 @@ function validacaoEmail(email){
   );
 }
 
-function validacaoSenha(senha){ 
+function validacaoSenha(senha) { 
   return !(senha.length < 5 || senha.length > 25);
 }
 
+function login() {
+  let valido = true;
+  let errors = [];
 
-function login(){
   let email = document.getElementById('email');
   let senha = document.getElementById('senha');
-  //verificar se campos estão vazios
-  if (email.value == '' && senha.value == '') {
-    email.setCustomValidity('Email é obrigatório');
 
-    senha.setCustomValidity('Senha é obrigatório');
-
-    alert('Email e senha obrigatórios!');
-    return;
-  } 
-    
-  if (email.value == '') {
-    email.setCustomValidity('Email é obrigatório');
-    
+  if (
+    email.value == "" 
+    || senha.value == ""
+  ){
+    email.setCustomValidity('Email inválido');
     senha.setCustomValidity('');
-    alert('Email obrigatório!');
-    return;
-  }
-
-  if (senha.value == '') {
-    senha.setCustomValidity('Senha é obrigatória');
-    
-    email.setCustomValidity('');
-    alert('Senha obrigatória!');
-    return;
-  }
-  //validando inputs
-  if (validacaoSenha(senha.value) == false) {
-    senha.setCustomValidity('Senha inválida');
-    email.setCustomValidity('');
-    alert('Senha obrigatória!');
+    alert("Campos obrigatórios!");
     return;
   }
 
   if (validacaoEmail(email.value) == false){ 
+    valido = false;
     email.setCustomValidity('Email inválido');
-  
+    errors.push('Email inválido');
+  } else {
+    email.setCustomValidity('');
+  }
+    
+  if (validacaoSenha(senha.value) == false) {
+    valido = false;
+    senha.setCustomValidity('Senha inválida');
+    errors.push('Senha inválida');
+  } else {
     senha.setCustomValidity('');
+  }  
 
-    alert('Email inválido!');
+  if (!valido) {
+    alert(errors.join('\n'));
     return;
   }
 

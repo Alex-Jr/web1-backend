@@ -21,10 +21,11 @@ module.exports = (req, res) => {
         } = body;
 
         const sql = 'insert into usuario(nome, email, senha, cpf, data_nasc, fone) values (?, ?, ?, ?, ?, ?)';
-        const values = [ nome, email, crypt(senha), cpf, datanasc, telefone.replace('-', '')]; 
+        const values = [ nome, email, crypt(senha), cpf.replace(/[^0-9]/g, ''), datanasc, telefone.replace(/[^0-9]/g, '')]; 
 
         database.query(sql, values, (errors, results, fields ) => {
             if(errors) {
+              console.warn(errors);
                 if(errors.code === 'ER_DUP_ENTRY') {
                     res.statusCode = 409;
                     res.end(errors.sqlMessage);

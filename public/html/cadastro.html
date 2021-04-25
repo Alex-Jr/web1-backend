@@ -5,48 +5,8 @@
         <!-- <script type="text/javascript" src="cadastro.js"></script> -->
         <script type="text/javascript" src="notLoggedPage.js"></script>
         <script type="text/javascript" src="formulario.js"></script>
+        <script type="text/javascript" src="cadastro.js"></script>
         <link rel="stylesheet" type="text/css" href="cadastro.css">
-
-        <script>
-            function cadastrar() {
-                const xhttp = new XMLHttpRequest();
-    
-                xhttp.onreadystatechange = function() {
-                    if(this.readyState == 4) {
-                        switch(this.status) {
-                            case 200:
-                                window.location.assign("/login.html");
-                                break
-                            case 400:
-                                alert(this.response.split('/').join('\n'));
-                                break
-                            case 409:
-                                let msg = 'Já existe um usuário utilizando \n'
-                                let infos = this.response.match(/\'(.*?)\'/g);
-                                msg += infos[0]
-                                alert(msg);
-                                break;
-                            default: 
-                                alert(this.response)
-                                break
-                        }
-                    }
-                };
-    
-                xhttp.open("POST", `cadastro.html`, true);
-
-                let bodyRequest = ''
-
-                const form = document.forms['formulario'];
-
-                for (input of form) {
-                    if(!input.name) continue;
-                    bodyRequest += `${input.name}=${input.value}&`;
-                }
-                
-                xhttp.send(bodyRequest);
-            }
-        </script>
     </head>
     <body class="Cadastro">
         <div class="Cadastro_header">
@@ -57,46 +17,44 @@
         <form id="formulario" class="Cadastro_formulario">
                 <div class='Cadastro_campo'>
                     <h2 class="Cadastro_label">Nome:</h2>
-                    <input class="Cadastro_input" type="text" name="nome">
+                    <input class="Cadastro_input" type="text" name="nome" id="nome">
                 </div>
 
                 <div class="Cadastro_campo">
                     <h2 class="Cadastro_label">E-mail:</h2>
-                    <input class="Cadastro_input" type="text" name="email"><br>
+                    <input class="Cadastro_input" type="text" name="email" id="email"><br>
                 </div>
 
                 <div class="Cadastro_campo">
                     <h2 class="Cadastro_label">Nascimento:</h2>
-                    <input class="Cadastro_input" type="date" name="datanasc">
+                    <input class="Cadastro_input" type="date" name="datanasc" id="datanasc">
                 </div>
 
                 <div class="Cadastro_campo">
                     <h2 class="Cadastro_label">CPF:</h2>
-                    <input class="Cadastro_input" type="text" name="cpf"><br>
+                    <input class="Cadastro_input" type="text" name="cpf" id="cpf"><br>
                 </div>
 
                 <div class="Cadastro_campo">
                     <h2 class="Cadastro_label">Senha:</h2>
-                    <input class="Cadastro_input" type="password" name="senha">
+                    <input class="Cadastro_input" type="password" name="senha" id="senha">
                 </div>
                 
                 <div class="Cadastro_campo">
                     <h2 class="Cadastro_label">Confirmar Senha:</h2>
-                    <input class="Cadastro_input" type="password" name="confsenha"><br>
+                    <input class="Cadastro_input" type="password" name="confsenha" id="confsenha"><br>
                 </div>
                 
                 <div class="Cadastro_campo">
                     <h2 class="Cadastro_label">Telefone:</h2>
-                    <input class="Cadastro_input" type="tel" id="telefone" name="telefone">
+                    <input class="Cadastro_input" type="tel" name="telefone" id="telefone">
                 </div>
 
                 <div class="Cadastro_campo Cadastro_botoes">
-                    <button type="button" class="Cadastro_botao"" onclick="resetar()"> LIMPAR </button>
+                    <button type="reset" class="Cadastro_botao"> LIMPAR </button>
 
                     <button type="button" class="Cadastro_botao" onclick="cadastrar()"> CONFIRMAR </button>
                 </div>
-                
-
         </form>
     </body>
     

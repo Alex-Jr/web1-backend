@@ -1,162 +1,225 @@
-function validarcpf(cpf){
-    cpf.toString();
-    resultado = 0;
-    for (i = 10; i > 1; i--){
-        resultado = cpf[10-i] * i; 
-    };
+function validarCpf(cpf){
+    cpf = cpf.replace(/[^0-9]/g, "");
 
-    resultado = ((resultado*10)%11);
-    
-    if (resultado = 10){
-        resultado = 0;
+    const invalid = [
+        '00000000000',
+        '11111111111', '22222222222', '33333333333',
+        '44444444444', '55555555555', '66666666666',
+        '77777777777', '88888888888', '99999999999'
+    ];
+
+    if (invalid.includes(cpf)) return false;
+
+    if(cpf.length > 11 || cpf.length < 11) return false;
+
+    let soma = 0;
+    // soma os 9 primeiros digitos, multiplicado por 10 - indice
+    for (let i = 0; i <= 8; i ++){
+        soma += parseInt(cpf.charAt(i)) * (10 - i);
     }
 
-    if (((resultado*10)%11) != cpf[9]){
-        return false;
-    };
+    let resto = soma % 11
 
-    for (i = 11; i > 1; i--){
-        resultado = cpf[11-i] * i; 
-    };
+    let digVerificador1 = 11 - resto;
+    let digVerificador2;
 
-    resultado = ((resultado*10)%11);
-    
-    if (resultado = 10){
-        resultado = 0;
+    if(digVerificador1 !== parseInt(cpf.charAt(9))) return false;
+
+    if(digVerificador1 >= 10) {
+        digVerificador2 = 0;
+
+        if(digVerificador2 !== parseInt(cpf.charAt(10))) return false;
     }
 
-    if (((resultado*10)%11) != cpf[9]){
-        return false;
-    };
+    soma = 0;
+    // soma os 10 primeiros digitos, multiplicados por 11 - indice
+    for (let i = 0; i <= 9; i++){
+        soma += parseInt(cpf.charAt(i)) * (11 - i);
+    }
 
-    return true;
+    resto = soma % 11;
+    digVerificador2 = 11 - resto;
 
+    if(digVerificador2 !== parseInt(cpf.charAt(10))) return false;
+
+    return true
 }
 
-function validarNome(nome){
-    const regex = /[0-9]/;
-    if (regex.test(nome) == true){
-        return false
-    }
 
-    return true;
+function validarNome(nome){
+  if(nome.length < 3) return false;
+
+  const regex = /^[a-zA-Záéíóúâêîôûàèìòù\'\ ]+$/g;
+  
+  return regex.test(nome);
 }
 
 function validacaoEmail(email){
-    antes = email.substring(0, email.indexOf("@"));  //antes do primeiro @
-    depois = email.substring(email.indexOf("@")+ 1, email.length); //depois do primeiro @
-   
-    if (
-        (antes.search(" ") != -1) || //caso tenha espaços
-        (depois.search(" ") != -1) || //caso tenha espaços
-        (email.search("@") == -1) || //caso não tenha @ no email
-        (antes.search("@") != -1) || //caso tenha @ no antes
-        (depois.search("@") != -1) || //caso tenha @ no depois
-        (depois.search(/[.]/g) < 1) || //caso não tenha ponto no depois
-        (depois.lastIndexOf(".") == depois.length -1) || //caso o ponto seja ultimo caracter
-        (antes.length <1) || //caso antes seja menor que 1
-        (depois.length <4)  //caso depois seja menor que 4
+  const antes = email.substring(0, email.indexOf('@'));  //antes do primeiro @
+  const depois = email.substring(email.indexOf('@')+ 1, email.length); //depois do primeiro @
 
-    ){
-        return false;
-    }
-    else{
-        return true;
-    }
+  return !(
+    (email.search(' ') != -1) || // caso tenha espaços
+    (email.search('@') == -1) || // caso não tenha @ no email
+    (depois.search('@') != -1) || // caso tenha @ no depois
+    (depois.search(/[.]/g) < 1) || // caso não tenha ponto no depois
+    (depois.lastIndexOf('.') == depois.length - 1) || // caso o ponto seja ultimo caracter
+    (antes.length < 1) || //caso antes seja menor que 1
+    (depois.length < 4)  //caso depois seja menor que 4
+  );
 }
 
 function validacaoSenha(senha){ 
-    if(senha.length<5 || senha.length>25){ //min 5, max 24
-        return false;
-    }else{
-        return true;
-    }
+  return !(senha.length < 5 || senha.length > 25);
 }
 
 function validarData(datanasc){ 
-    let hoje = new Date();
-    let nasc  = new Date(datanasc);
-    let idade = hoje.getFullYear() - nasc.getFullYear();
-    let mes = hoje.getMonth() - nasc.getMonth();
-    if (mes < 0 || (mes === 0 && hoje.getDate() < nasc.getDate())){
-        idade--;
-    };
+  const hoje = new Date();
+  const nasc  = new Date(datanasc);
 
-    if (idade > 100){
-        document.getElementById("errodata").innerHTML = "Idade inválida!";
-    };
+  const mes = hoje.getMonth() - nasc.getMonth();
 
-    return true;
+  let idade = hoje.getFullYear() - nasc.getFullYear();
+
+  if (mes < 0 || (mes === 0 && hoje.getDate() < nasc.getDate())){
+      idade--;
+  };
+
+  return (idade < 110 && idade > 0);
 }
 
-function validarTelefone(telefone){
-    if (telefone.length > 11){
-        document.getElementById("errotelefone").innerHTML = "Telefone Inválido";
-    };
-    return true;
+function validarTelefone(telefone) {
+  telefone = telefone.replace(/[^0-9]/g, '');
+  console.log(telefone);
+
+  return (telefone.length == 11 || telefone.length == 10);
 }
 
 function confirmarSenha(senha, confsenha){
-    if (senha !== confsenha) {
-        return false
-    }
-
-    return true;
+  return confsenha === senha;
 }
 
 function cadastrar(){
-    nome = document.getElementById("nome");
-    email = document.getElementById("email");
-    datanasc = document.getElementById("datanasc");
-    cpf = document.getElementById("cpf");
-    senha = document.getElementById("senha");
-    confsenha = document.getElementById("confsenha");
-    telefone = document.getElementById("telefone");
+  let valido = true;
+  const errors = [];
 
-    if(email.value =="" || senha.value =="" || confsenha.value ==""  ||  nome.value =="" || datanasc.value =="" || cpf.value =="" || telefone.value ==""){
-        document.getElementById("errogeral").innerHTML = "Campos obrigatórios!";
-        console.log('AEEEEEEEEEEEEE')
-        return;
+  const nome = document.getElementById("nome");
+  const email = document.getElementById("email");
+  const datanasc = document.getElementById("datanasc");
+  const cpf = document.getElementById("cpf");
+  const senha = document.getElementById("senha");
+  const confsenha = document.getElementById("confsenha");
+  const telefone = document.getElementById("telefone");
+
+  if (
+    email.value == "" 
+    || senha.value == ""
+    || confsenha.value == "" 
+    || nome.value == "" 
+    || datanasc.value == "" 
+    || cpf.value == "" 
+    || telefone.value == ""
+  ) {
+    alert("Campos obrigatórios!");
+    return;
+  }
+
+  if (validarNome(nome.value) == false){
+    valido = false;
+    errors.push("Nome inválido!");
+    nome.setCustomValidity('Nome inválido');
+  } else {
+    nome.setCustomValidity('');
+  };
+  
+  if (validacaoEmail(email.value) == false){
+    valido = false;
+    errors.push("E-mail inválido!");
+    email.setCustomValidity('Email inválido');
+  } else {
+    email.setCustomValidity('');
+  };
+
+  if (validarData(datanasc.value) == false){
+    valido = false;
+    errors.push("Data inválida!");
+    datanasc.setCustomValidity('Data inválida');
+  } else {
+    datanasc.setCustomValidity('');
+  }
+
+  if (validarCpf(cpf.value) == false){
+    valido = false;
+    errors.push("CPF inválido!");
+    cpf.setCustomValidity('CPF inválido');
+  } else {
+    cpf.setCustomValidity('');
+  };
+
+  if (validacaoSenha(senha.value) == false){
+    valido = false;
+    errors.push("Senha inválida!");
+    senha.setCustomValidity('Senha inválida');
+  } else {
+    senha.setCustomValidity('');
+  };
+
+  if (confirmarSenha(senha.value, confsenha.value) == false){
+    valido = false;
+    errors.push("Senha incompatível");
+    confsenha.setCustomValidity('Senhas diferentes');
+  } else {
+    confsenha.setCustomValidity('');
+  };
+
+  if (validarTelefone(telefone.value) == false){
+    valido = false;
+    errors.push("Telefone inválido!");
+    telefone.setCustomValidity('Telefone inválido');
+  } else {
+    telefone.setCustomValidity('');
+  };
+
+  if (!valido) {
+    alert(errors.join('\n'));
+    return;
+  }
+
+  const xhttp = new XMLHttpRequest();
+    
+  xhttp.onreadystatechange = function() {
+    if(this.readyState == 4) {
+      switch(this.status) {
+        case 200:
+          window.location.assign("/login.html");
+          break;
+        case 400:
+          alert(this.response.split('/').join('\n'));
+          break;
+        case 409:
+          let msg = 'Já existe um usuário utilizando \n'
+          let infos = this.response.match(/\'(.*?)\'/g);
+          msg += infos[0]
+          alert(msg);
+          break;
+        default: 
+          alert(this.response)
+          break;
+      }
     }
-    else {
-        if (validarNome(nome.value) == false){
-            document.getElementById("erronome").innerHTML = "Nome inválido!";
-        };
-        
-        if (validacaoEmail(email.value) == false){
-            document.getElementById("erroemail").innerHTML = "E-mail inválido!";
-        };
+  };
 
-        if (validarData(datanasc.value) == false){
-            document.getElementById("errodata").innerHTML = "Data inválida!";
-        };
+  xhttp.open("POST", `cadastro.html`, true);
 
-        if (validarcpf(cpf.value) == false){
-            document.getElementById("errocpf").innerHTML = "CPF inválido!";
-        };
+  let bodyRequest = ''
 
-        if (validacaoSenha(senha.value) == false){
-            document.getElementById("errosenha").innerHTML = "Senha inválida!";
-        };
+  const form = document.forms['formulario'];
 
-        if (confirmarSenha(confsenha.value) == false){
-            document.getElementById("errosenhaconf").innerHTML = "Senha incompatível";
-        };
-
-        if (validarTelefone(telefone.value) == false){
-            document.getElementById("errotel").innerHTML = "Telefone inválido!"
-        };
-
-        return console.log('safe');
-    };
+  for (input of form) {
+      if(!input.name) continue;
+      bodyRequest += `${input.name}=${input.value}&`;
+  }
+  
+  xhttp.send(bodyRequest);
 };
 
-/*function resetar(){
-    "" = document.getElementById("nome").value;
-    "" = document.getElementById("email").value;
-    "" = document.getElementById("datanasc").value;
-    "" = document.getElementById("cpf").value;
-    "" = document.getElementById("senha").value;
-    "" = document.getElementById("confsenha").value;
-    "" = document.getElementById("telefone").value;
-}*/

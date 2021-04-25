@@ -80,6 +80,11 @@
     padding: 0 14px;
 }
 
+.Cadastro_input:invalid {
+  outline: none;
+  border: 1px solid rgb(255, 23, 140);
+  padding: 0 14px;
+}
 
 .Cadastro_botoes {
     display: flex;
