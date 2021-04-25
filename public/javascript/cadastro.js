@@ -2,10 +2,10 @@ function validarCpf(cpf){
     cpf = cpf.replace(/[^0-9]/g, "");
 
     const invalid = [
-        '00000000000',
-        '11111111111', '22222222222', '33333333333',
-        '44444444444', '55555555555', '66666666666',
-        '77777777777', '88888888888', '99999999999'
+      '00000000000',
+      '11111111111', '22222222222', '33333333333',
+      '44444444444', '55555555555', '66666666666',
+      '77777777777', '88888888888', '99999999999'
     ];
 
     if (invalid.includes(cpf)) return false;
@@ -216,8 +216,8 @@ function cadastrar(){
   const form = document.forms['formulario'];
 
   for (input of form) {
-      if(!input.name) continue;
-      bodyRequest += `${input.name}=${input.value}&`;
+    if(!input.name) continue;
+    bodyRequest += `${input.name}=${input.value}&`;
   }
   
   xhttp.send(bodyRequest);

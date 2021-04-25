@@ -2,7 +2,7 @@
 const cookies = Object.fromEntries(document.cookie.split('; ').map(x => x.split('=')));
 
 if(cookies.logged !== 'true') {  
-    window.location.assign("/login.html");
+  window.location.assign("/login.html");
 }
 
 function logout() {

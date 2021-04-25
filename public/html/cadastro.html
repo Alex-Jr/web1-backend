@@ -1,61 +1,64 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Cadastro</title>
-        <!-- <script type="text/javascript" src="cadastro.js"></script> -->
-        <script type="text/javascript" src="notLoggedPage.js"></script>
-        <script type="text/javascript" src="formulario.js"></script>
-        <script type="text/javascript" src="cadastro.js"></script>
-        <link rel="stylesheet" type="text/css" href="cadastro.css">
-    </head>
-    <body class="Cadastro">
-        <div class="Cadastro_header">
-            <button class="Cadastro_botao" onclick="window.location.href='/login.html'"> VOLTAR </button>
-            <h1 class="Cadastro_title">Cadastre-se</h1>
-        </div>
 
-        <form id="formulario" class="Cadastro_formulario">
-                <div class='Cadastro_campo'>
-                    <h2 class="Cadastro_label">Nome:</h2>
-                    <input class="Cadastro_input" type="text" name="nome" id="nome">
-                </div>
+  <head>
+    <meta charset="utf-8">
+    <title>Cadastro</title>
+    <!-- <script type="text/javascript" src="cadastro.js"></script> -->
+    <script type="text/javascript" src="notLoggedPage.js"></script>
+    <script type="text/javascript" src="formulario.js"></script>
+    <script type="text/javascript" src="cadastro.js"></script>
+    <link rel="stylesheet" type="text/css" href="cadastro.css">
+  </head>
 
-                <div class="Cadastro_campo">
-                    <h2 class="Cadastro_label">E-mail:</h2>
-                    <input class="Cadastro_input" type="text" name="email" id="email"><br>
-                </div>
+  <body class="Cadastro">
+    <div class="Cadastro_header">
+        <button class="Cadastro_botao" onclick="window.location.href='/login.html'"> VOLTAR </button>
+        <h1 class="Cadastro_title">Cadastre-se</h1>
+    </div>
 
-                <div class="Cadastro_campo">
-                    <h2 class="Cadastro_label">Nascimento:</h2>
-                    <input class="Cadastro_input" type="date" name="datanasc" id="datanasc">
-                </div>
+    <form id="formulario" class="Cadastro_formulario">
+      <div class='Cadastro_campo'>
+        <h2 class="Cadastro_label">Nome:</h2>
+        <input class="Cadastro_input" type="text" name="nome" id="nome">
+      </div>
 
-                <div class="Cadastro_campo">
-                    <h2 class="Cadastro_label">CPF:</h2>
-                    <input class="Cadastro_input" type="text" name="cpf" id="cpf"><br>
-                </div>
+      <div class="Cadastro_campo">
+        <h2 class="Cadastro_label">E-mail:</h2>
+        <input class="Cadastro_input" type="text" name="email" id="email"><br>
+      </div>
 
-                <div class="Cadastro_campo">
-                    <h2 class="Cadastro_label">Senha:</h2>
-                    <input class="Cadastro_input" type="password" name="senha" id="senha">
-                </div>
-                
-                <div class="Cadastro_campo">
-                    <h2 class="Cadastro_label">Confirmar Senha:</h2>
-                    <input class="Cadastro_input" type="password" name="confsenha" id="confsenha"><br>
-                </div>
-                
-                <div class="Cadastro_campo">
-                    <h2 class="Cadastro_label">Telefone:</h2>
-                    <input class="Cadastro_input" type="tel" name="telefone" id="telefone">
-                </div>
+      <div class="Cadastro_campo">
+        <h2 class="Cadastro_label">Nascimento:</h2>
+        <input class="Cadastro_input" type="date" name="datanasc" id="datanasc">
+      </div>
 
-                <div class="Cadastro_campo Cadastro_botoes">
-                    <button type="reset" class="Cadastro_botao"> LIMPAR </button>
+      <div class="Cadastro_campo">
+        <h2 class="Cadastro_label">CPF:</h2>
+        <input class="Cadastro_input" type="text" name="cpf" id="cpf"><br>
+      </div>
 
-                    <button type="button" class="Cadastro_botao" onclick="cadastrar()"> CONFIRMAR </button>
-                </div>
-        </form>
-    </body>
-    
+      <div class="Cadastro_campo">
+        <h2 class="Cadastro_label">Senha:</h2>
+        <input class="Cadastro_input" type="password" name="senha" id="senha">
+      </div>
+      
+      <div class="Cadastro_campo">
+        <h2 class="Cadastro_label">Confirmar Senha:</h2>
+        <input class="Cadastro_input" type="password" name="confsenha" id="confsenha"><br>
+      </div>
+      
+      <div class="Cadastro_campo">
+        <h2 class="Cadastro_label">Telefone:</h2>
+        <input class="Cadastro_input" type="tel" name="telefone" id="telefone">
+      </div>
+
+      <div class="Cadastro_campo Cadastro_botoes">
+        <button type="reset" class="Cadastro_botao"> LIMPAR </button>
+
+        <button type="button" class="Cadastro_botao" onclick="cadastrar()"> CONFIRMAR </button>
+      </div>
+    </form>
+  </body>
+  
 </html>

@@ -1,156 +1,156 @@
 .Home {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-    background-color: rgb(26, 26, 26);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(26, 26, 26);
 }
 
 .Home_conteudo {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 
-    width: 600px;
-    height: 650px;
-    background-color: rgb(48, 48, 48);
-    padding: 25px;
-    border-radius: 25px;
+  width: 600px;
+  height: 650px;
+  background-color: rgb(48, 48, 48);
+  padding: 25px;
+  border-radius: 25px;
 }
 
 .Home_title {
-    margin: 0;
-    color: white;
+  margin: 0;
+  color: white;
 }
 
 .Home_input,
 .Home_botao {
-    border: none;
-    border-radius: 25px;
-    color: white;
+  border: none;
+  border-radius: 25px;
+  color: white;
 }
 
 .Home_input {
-    /* box-sizing: border-box; */
-    height: 35px;
-    line-height: 15px;
-    width: 100%;
-    background-color: rgb(68, 68, 68);
-    padding: 0 15px;
+  /* box-sizing: border-box; */
+  height: 35px;
+  line-height: 15px;
+  width: 100%;
+  background-color: rgb(68, 68, 68);
+  padding: 0 15px;
 }
 
 .Home_input:focus {
-    outline: none;
-    border: 1px solid rgb(159, 23, 140);
-    padding: 0 14px;
+  outline: none;
+  border: 1px solid rgb(159, 23, 140);
+  padding: 0 14px;
 }
 
 
 table {
-    border-collapse: collapse;
-    border-spacing: 0;
-    color: white;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: white;
 }
 
 .Home_table {
-    margin: 0;
-    margin-top: 10px;
-    background-color: rgb(48, 48, 48);
+  margin: 0;
+  margin-top: 10px;
+  background-color: rgb(48, 48, 48);
 }
 
 .Home_table-header {
-    width: 100%;
+  width: 100%;
 }
 
 .Home_table-header-row {
-    text-align: start;
+  text-align: start;
 }
 
 .Home_table-body {
-    width: 100%;
-    height: 400px; 
-    overflow: auto;
+  width: 100%;
+  height: 400px; 
+  overflow: auto;
 }
 
 .Home_table-dados {
-    border-collapse: collapse;
-    border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 .Home_table-body-row:nth-of-type(2n) {
-    background-color: rgb(68, 68, 68);
+  background-color: rgb(68, 68, 68);
 }
 
 .Home_table-body-cell {
-    text-align: center;
-    width: 200px;
-    height: 75px;
+  text-align: center;
+  width: 200px;
+  height: 75px;
 }
 
 .Home_botao {
-    align-self: flex-end;
-    height: 35px;
-    width: 45%;
-    background-color: rgb(159, 23, 140);
+  align-self: flex-end;
+  height: 35px;
+  width: 45%;
+  background-color: rgb(159, 23, 140);
 }
 
 .Home_botao:hover {
-    background-color: rgb(169, 26, 150);
+  background-color: rgb(169, 26, 150);
 }
 
 .Home_user {
-    position:absolute;
-    top: 0;
-    right: 0;
+  position:absolute;
+  top: 0;
+  right: 0;
 
-    display: flex;
-    padding: 15px;
-    width: 275px;
-    height: 100px;
-    background-color: rgb(48, 48, 48);
-    border-radius: 0 0 0 15px;
+  display: flex;
+  padding: 15px;
+  width: 275px;
+  height: 100px;
+  background-color: rgb(48, 48, 48);
+  border-radius: 0 0 0 15px;
 }
 
 .Home_user-image {
-    align-self: center;
-    width: 75px;
-    height: 75px;
-    margin-right: 15px;
+  align-self: center;
+  width: 75px;
+  height: 75px;
+  margin-right: 15px;
 }
 
- /*---------------------------------------------------- */
+/*---------------------------------------------------- */
 .Home_user-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    color: white;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: white;
 }
 
 .Home_user-botoes {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .Home_user-botao {
-    border: none;
-    border-radius: 25px;
-    color: white;
+  border: none;
+  border-radius: 25px;
+  color: white;
 
-    align-self: flex-end;
-    height: 25px;
-    width: 45%;
-    background-color: rgb(159, 23, 140);
+  align-self: flex-end;
+  height: 25px;
+  width: 45%;
+  background-color: rgb(159, 23, 140);
 }
 
 .Home_user-botao:hover {
-    background-color: rgb(169, 26, 150);
+  background-color: rgb(169, 26, 150);
 }
 
 .Home_user-title {
-    margin: 0;
+  margin: 0;
 }

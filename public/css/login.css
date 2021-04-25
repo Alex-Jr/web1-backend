@@ -1,63 +1,63 @@
 .Login {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-    background-color: rgb(26, 26, 26);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(26, 26, 26);
 }
 
 .Login_image,
 .Login_formulario {
-    height: 425px;
+  height: 425px;
 }
 
 .Login_image {
-    width: 275px;
+  width: 275px;
 }
 
 .Login_formulario {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    /* align-items: ; */
-    width: 450px;
-    background-color: rgb(48, 48, 48);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  /* align-items: ; */
+  width: 450px;
+  background-color: rgb(48, 48, 48);
 }
 
 .Login_input,
 .Login_label,
 .Login_button,
 .Login_textos {
-    margin: 0px 50px;
-    height: 35px;
+  margin: 0px 50px;
+  height: 35px;
 }
 
 .Login_input,
 .Login_button {
-    border: none;
-    border-radius: 25px;
-    color: white
+  border: none;
+  border-radius: 25px;
+  color: white
 }
 
 .Login_label {
-    color: white;
+  color: white;
 }
 
 .Login_input {
-    height: 35px;
-    line-height: 15px;
-    background-color: rgb(68, 68, 68);
-    padding: 0 15px;
+  height: 35px;
+  line-height: 15px;
+  background-color: rgb(68, 68, 68);
+  padding: 0 15px;
 }
 
 .Login_input:focus {
-    outline: none;
-    border: 1px solid rgb(159, 23, 140);
-    height: 33px;
-    padding: 0 14px;
+  outline: none;
+  border: 1px solid rgb(159, 23, 140);
+  height: 33px;
+  padding: 0 14px;
 }
 
 .Login_input:invalid {
@@ -68,22 +68,22 @@
 }
 
 .Login_button {
-    background-color: rgb(159, 23, 140);
+  background-color: rgb(159, 23, 140);
 }
 
 .Login_button:hover {
-    background-color: rgb(169, 26, 150);
+  background-color: rgb(169, 26, 150);
 }
 
 .Login_textos {
-    align-self: flex-end;
+  align-self: flex-end;
 }
 
 .Login_link {
-    color: rgb(210, 60, 206);
-    text-decoration: none;
+  color: rgb(210, 60, 206);
+  text-decoration: none;
 }
 
 .Login_link:hover {
-    color: rgb(220, 63, 216);
+  color: rgb(220, 63, 216);
 }

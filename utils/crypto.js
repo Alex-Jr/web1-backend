@@ -16,23 +16,23 @@ function crypt(texto){
 
   const hash = iv.toString('hex') + ':' + buffer.toString('hex');
 
-  return hash
+  return hash;
 }
 
 function decrypt(hash){
-    const splited = hash.split(':');
+  const splited = hash.split(':');
 
-    const iv = Buffer.from(splited.shift(), 'hex');
+  const iv = Buffer.from(splited.shift(), 'hex');
 
-    const encrypted = Buffer.from(splited.join(':'), 'hex');
+  const encrypted = Buffer.from(splited.join(':'), 'hex');
 
-    const decipher = crypto.createDecipheriv(alg, pwd, iv);
+  const decipher = crypto.createDecipheriv(alg, pwd, iv);
 
-    const decrypted = decipher.update(encrypted);
+  const decrypted = decipher.update(encrypted);
 
-    const text = Buffer.concat([decrypted, decipher.final()]).toString();
+  const text = Buffer.concat([decrypted, decipher.final()]).toString();
 
-    return text
+  return text;
 }
 
 module.exports = {

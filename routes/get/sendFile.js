@@ -22,8 +22,8 @@ function sendFile(req, res) {
       res.end('Sorry, file not found');
     }
     else {
-        res.statusCode = 500;
-        res.end('Internal server error');
+      res.statusCode = 500;
+      res.end('Internal server error');
     }
   }
 }

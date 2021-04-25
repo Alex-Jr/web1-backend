@@ -1,127 +1,128 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Perfil</title>
-        <!-- <script type="text/javascript" src="perfil.js"></script> -->
-        
-        <script type="text/javascript" src="loggedPage.js"></script>
-        <script type="text/javascript" src="formulario.js"></script>
-        <link rel="stylesheet" type="text/css" href="perfil.css">
-    
-        <script>
-            function deletarConta() {
-                const xhttp = new XMLHttpRequest();
-    
-                xhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        logout()
-                    }
-                };
 
-                xhttp.open("DELETE", `usuarios`, true);
+  <head>
+    <meta charset="utf-8">
+    <title>Perfil</title>
+    <!-- <script type="text/javascript" src="perfil.js"></script> -->
     
-                xhttp.send();
+    <script type="text/javascript" src="loggedPage.js"></script>
+    <script type="text/javascript" src="formulario.js"></script>
+    <link rel="stylesheet" type="text/css" href="perfil.css">
+  
+    <script>
+      function deletarConta() {
+        const xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            logout()
+          }
+        };
+
+        xhttp.open("DELETE", `usuarios`, true);
+
+        xhttp.send();
+      }
+
+      function editar() {
+        const xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4) {
+            switch(this.status) {
+              case 200:
+                alert('Usuário atualizado')
+                window.location.assign("/home.html");
+                break
+              case 400:
+                alert(this.response.split('/').join('\n'));
+                break
+              case 409:
+                let msg = 'Já existe um usuário utilizando \n'
+                let infos = this.response.match(/\'(.*?)\'/g);
+                msg += infos[0]
+                alert(msg);
+                break;
+              default: 
+                alert(this.response)
+                break
             }
+          }
+        };
 
-            function editar() {
-                const xhttp = new XMLHttpRequest();
-    
-                xhttp.onreadystatechange = function() {
-                    if (this.readyState == 4) {
-                        switch(this.status) {
-                            case 200:
-                                alert('Usuário atualizado')
-                                window.location.assign("/home.html");
-                                break
-                            case 400:
-                                alert(this.response.split('/').join('\n'));
-                                break
-                            case 409:
-                                let msg = 'Já existe um usuário utilizando \n'
-                                let infos = this.response.match(/\'(.*?)\'/g);
-                                msg += infos[0]
-                                alert(msg);
-                                break;
-                            default: 
-                                alert(this.response)
-                                break
-                        }
-                    }
-                    
+        xhttp.open("POST", 'perfil.html', true);
 
-                };
+        let bodyRequest = ''
 
-                xhttp.open("POST", 'perfil.html', true);
+        const form = document.forms['formulario'];
 
-                let bodyRequest = ''
+        for (input of form) {
+          if(!input.name) continue;
+          bodyRequest += `${input.name}=${input.value}&`;
+        }
 
-                const form = document.forms['formulario'];
+        xhttp.send(bodyRequest);
+      }
+    </script>
 
-                for (input of form) {
-                    if(!input.name) continue;
-                    bodyRequest += `${input.name}=${input.value}&`;
-                }
+  </head>
+  <body class="Perfil">
 
-                xhttp.send(bodyRequest);
-            }
-        </script>
+    <div class="Perfil_header">
+      <button class="Perfil_botao" onclick="window.location.href='/home.html'"> VOLTAR </button>
+      <h1 class="Perfil_title">Editar perfil</h1>
+    </div>
 
-    </head>
-    <body class="Perfil">
-        <div class="Perfil_header">
-            <button class="Perfil_botao" onclick="window.location.href='/home.html'"> VOLTAR </button>
-            <h1 class="Perfil_title">Editar perfil</h1>
-        </div>
+    <form id="formulario" class="Perfil_formulario">
+      <div class='Perfil_campo'>
+        <h2 class="Perfil_label">Nome:</h2>
+        <input class="Perfil_input" type="text" name="nome">
+      </div>
 
-        <form id="formulario" class="Perfil_formulario">
-                <div class='Perfil_campo'>
-                    <h2 class="Perfil_label">Nome:</h2>
-                    <input class="Perfil_input" type="text" name="nome">
-                </div>
+      <div class="Perfil_campo">
+        <h2 class="Perfil_label">E-mail:</h2>
+        <input class="Perfil_input" type="text" name="email"><br>
+      </div>
 
-                <div class="Perfil_campo">
-                    <h2 class="Perfil_label">E-mail:</h2>
-                    <input class="Perfil_input" type="text" name="email"><br>
-                </div>
+      <div class="Perfil_campo">
+        <h2 class="Perfil_label">Nascimento:</h2>
+        <input class="Perfil_input" type="date" name="datanasc">
+      </div>
 
-                <div class="Perfil_campo">
-                    <h2 class="Perfil_label">Nascimento:</h2>
-                    <input class="Perfil_input" type="date" name="datanasc">
-                </div>
+      <div class="Perfil_campo">
+        <h2 class="Perfil_label">CPF:</h2>
+        <input class="Perfil_input" type="text" name="cpf"><br>
+      </div>
 
-                <div class="Perfil_campo">
-                    <h2 class="Perfil_label">CPF:</h2>
-                    <input class="Perfil_input" type="text" name="cpf"><br>
-                </div>
+      <div class="Perfil_campo">
+        <h2 class="Perfil_label">Senha:</h2>
+        <input class="Perfil_input" type="password" name="senha">
+      </div>
+      
+      <div class="Perfil_campo">
+        <h2 class="Perfil_label">Confirmar Senha:</h2>
+        <input class="Perfil_input" type="password" name="confsenha"><br>
+      </div>
+      
+      <div class="Perfil_campo">
+        <h2 class="Perfil_label">Telefone:</h2>
+        <input class="Perfil_input" type="tel" id="telefone" name="telefone">
+      </div>
 
-                <div class="Perfil_campo">
-                    <h2 class="Perfil_label">Senha:</h2>
-                    <input class="Perfil_input" type="password" name="senha">
-                </div>
-                
-                <div class="Perfil_campo">
-                    <h2 class="Perfil_label">Confirmar Senha:</h2>
-                    <input class="Perfil_input" type="password" name="confsenha"><br>
-                </div>
-                
-                <div class="Perfil_campo">
-                    <h2 class="Perfil_label">Telefone:</h2>
-                    <input class="Perfil_input" type="tel" id="telefone" name="telefone">
-                </div>
+      <div class="Perfil_campo Perfil_botoes">
+        <button type="button" class="Perfil_botao" onclick="resetar()"> LIMPAR </button>
 
-                <div class="Perfil_campo Perfil_botoes">
-                    <button type="button" class="Perfil_botao" onclick="resetar()"> LIMPAR </button>
+        <button type="button" class="Perfil_botao" onclick="editar()"> CONFIRMAR </button>
+      </div>
 
-                    <button type="button" class="Perfil_botao" onclick="editar()"> CONFIRMAR </button>
-                </div>
-                
+    </form>
 
-        </form>
+    <div class="Perfil_perigo">
+      <h2 class="Perfil_title Perfil_perigo-title"> Zona perigosa</h2>
+      <button class="Perfil_botao Perfil_botao--red" onclick="deletarConta()">Excluir conta</button>
+    </div>
 
-        <div class="Perfil_perigo">
-            <h2 class="Perfil_title Perfil_perigo-title"> Zona perigosa</h2>
-            <button class="Perfil_botao Perfil_botao--red" onclick="deletarConta()">Excluir conta</button>
-        </div>
-    </body>
-    
+  </body>
+  
 </html>
