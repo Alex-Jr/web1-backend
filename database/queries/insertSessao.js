@@ -6,7 +6,7 @@ module.exports = async (token, userId) => {
 
   return new Promise((resolve, reject) => {
     const date = new Date();
-    date.setDate(date.getDate() + 7);
+    date.setDate(date.getDate() - 1);
 
     const sql = 'INSERT INTO sessao VALUES (?, ?, ?)';
     const values = [token, userId, date];

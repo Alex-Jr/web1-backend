@@ -21,8 +21,16 @@ function deletarConta() {
   const xhttp = new XMLHttpRequest();
 
   xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        logout();
+    if (this.readyState == 4) {
+      switch(this.status) {
+        case 200:
+          logout();
+          break;
+        case 403:
+          alert('Não autorizado');
+          logout();
+          break;
+      }
     }
   };
 

@@ -1,8 +1,9 @@
-const database = require("../../database/setup")
+const database = require("../../database/setup");
+const authenticator = require("../../utils/authenticator");
 
-module.exports = (req, res) => {
+module.exports = async (req, res) => {
   try {
-    console.log('DELETE usuarios');
+    await authenticator(JSON.parse(req.headers.cookie.user).token);
 
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
@@ -21,7 +22,16 @@ module.exports = (req, res) => {
     })
   } catch (err) {
     console.warn(err);
-    res.statusCode = 500;
-    res.end('Internal server error');
+
+    switch(err.name) {
+      case 'AuthorizationError':
+        res.statusCode = 403;
+        res.end('Acesso negado');
+        break;
+      default:
+        res.statusCode = 500;
+        res.end('Internal server error');
+        break;
+    }
   }
 }
