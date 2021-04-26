@@ -35,7 +35,12 @@ function decrypt(hash){
   return text;
 }
 
+function generateToken() {
+  return crypto.randomBytes(32).toString('hex');
+}
+
 module.exports = {
   crypt,
   decrypt,
+  generateToken,
 }

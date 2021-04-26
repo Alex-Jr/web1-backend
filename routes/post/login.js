@@ -1,62 +1,49 @@
-const database = require("../../database/setup");
 const loginValidator = require("../../validator/login");
-const { decrypt } = require('../../utils/crypto');
+const { decrypt, generateToken } = require('../../utils/crypto');
+const selectUser = require("../../database/queries/selectUser");
+const insertSessao = require("../../database/queries/insertSessao");
 
-module.exports = (req, res) => {
-try {
-  const body = req.body;
-  
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  
-  loginValidator(body);
+module.exports = async (req, res) => {
+  try {
+    const body = req.body;
+    
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain');
+    
+    loginValidator(body);
 
-  const {
-    email,
-    senha,
-  } = body;
+    const {
+      email,
+      senha,
+    } = body;
 
-  const sql = 'select u.nome, u.email, u.data_nasc, u.telefone, u.cpf, u.senha from usuario as u where email = ?';
-  const values = [email]; 
+    const user = await selectUser(email);
 
-  database.query(sql, values, (errors, results, fields) => {
-    if(errors) {
-      console.warn(err);
+    if(decrypt(user.senha) !== senha) throw new Error('Não autorizado');
 
-      res.statusCode = 500;
-      res.end('Internal server error');
-      return;
-    }
+    const token = generateToken();
 
-    if(results.length === 0) {
-      res.statusCode = 401;
-      res.end('Email ou senha errados');
-      return;
-    }
-    const user = results[0];
+    await insertSessao(token, user.id);
 
-    if(decrypt(user.senha) !== senha){
-      res.statusCode = 400;
-      res.end('Email ou senha errados');
-      return;
-    }
+    user.token = token;
 
     delete user.senha;
+    delete user.id;
 
     res.end(JSON.stringify(user));
-  }); 
-} catch (err) {
-  console.warn(err);
 
-  switch (err.name) {
-    case 'ValidationError': 
-      res.statusCode = 400;
-      res.end(err.message)
-      break
-    default :
-      res.statusCode = 500;
-      res.end('Internal server error');
-      break;
-  }
-} 
+  } catch (err) {
+    console.warn(err);
+
+    switch (err.name) {
+      case 'ValidationError': 
+        res.statusCode = 400;
+        res.end(err.message)
+        break
+      default :
+        res.statusCode = 500;
+        res.end('Internal server error');
+        break;
+    }
+  } 
 }
