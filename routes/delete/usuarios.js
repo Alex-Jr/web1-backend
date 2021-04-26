@@ -1,25 +1,17 @@
+const deleteUsuario = require("../../database/queries/deleteUsuario");
 const database = require("../../database/setup");
 const authenticator = require("../../utils/authenticator");
 
 module.exports = async (req, res) => {
+  res.setHeader('Content-Type', 'text/plain');
+
   try {
-    await authenticator(JSON.parse(req.headers.cookie.user).token);
+    const user = await authenticator(req);
 
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain');
-
-    const sql = 'delete from usuario where email = ?';
-    const values = [JSON.parse(req.headers.cookie.user).email];
+    await deleteUsuario(user.email);
     
-    database.query(sql, values,(errors, results, fields) => {
-      if(errors) {
-        console.warn(errors);
-        res.statusCode = 500;
-        res.end('Internal server error');
-      } else {
-        res.end('ok');
-      }
-    })
+    res.statusCode = 200;
+    res.end('Usuário deletado com sucesso');
   } catch (err) {
     console.warn(err);
 

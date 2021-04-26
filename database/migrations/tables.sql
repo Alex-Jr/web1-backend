@@ -17,5 +17,5 @@ CREATE TABLE IF NOT EXISTS sessao (
     userId int(11) UNIQUE NOT NULL,
     expires date NOT NULL,
     PRIMARY KEY (token),
-    FOREIGN KEY (userId) REFERENCES usuario(id)
+    FOREIGN KEY (userId) REFERENCES usuario(id) ON DELETE CASCADE
 ); 

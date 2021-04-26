@@ -49,7 +49,7 @@ function validarCpf(cpf){
 function validarNome(nome){
   if(nome.length < 3) return false;
 
-  const regex = /^[a-zA-ZáéíóúâêîôûàèìòùçÇ\'\ ]+$/g;
+  const regex = /^[a-zA-ZáéíóúâêîôûàèìòùãõäëïöüçÇ\'\ ]+$/g;
 
   return regex.test(nome);
 }
