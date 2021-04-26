@@ -1,4 +1,4 @@
-const listUsers = require("../../database/queries/listUsers");
+const listUsuario = require("../../database/queries/listUsuario");
 
 module.exports = async (req, res) => {
   res.setHeader('Content-Type', 'text/plain');
@@ -6,7 +6,7 @@ module.exports = async (req, res) => {
   try {
     const { nome } = req.params;
 
-    const users = await listUsers(nome);
+    const users = await listUsuario(nome);
     
     res.statusCode = 200;
     res.end(JSON.stringify(users));
