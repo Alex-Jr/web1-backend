@@ -1,7 +1,8 @@
 const database = require("../setup")
+const { NotFoundError } = require("../../utils/errors");
 
-module.exports = (email, senha) => new Promise((resolve, reject) => {
-  const sql = 'select u.id, u.nome, u.email, u.data_nasc, u.telefone, u.cpf, u.senha from usuario as u where email = ?';
+module.exports = (email) => new Promise((resolve, reject) => {
+  const sql = 'SELECT * FROM usuario WHERE email = ?';
   const values = [email]; 
 
   database.query(sql, values, (errors, results, fields) => {
@@ -11,7 +12,7 @@ module.exports = (email, senha) => new Promise((resolve, reject) => {
     }
 
     if(results.length === 0) {
-      reject(new Error('Email ou senha errados'));
+      reject(new NotFoundError('Usuário não encontrado'));
       return;
     }
 

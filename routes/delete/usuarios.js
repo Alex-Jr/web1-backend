@@ -1,5 +1,4 @@
 const deleteUsuario = require("../../database/queries/deleteUsuario");
-const database = require("../../database/setup");
 const authenticator = require("../../utils/authenticator");
 
 module.exports = async (req, res) => {

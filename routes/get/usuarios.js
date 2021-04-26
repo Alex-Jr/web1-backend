@@ -1,28 +1,27 @@
-const database = require("../../database/setup")
+const listUsers = require("../../database/queries/listUsers");
 
-module.exports = (req, res, params) => {
+module.exports = async (req, res) => {
+  res.setHeader('Content-Type', 'text/plain');
+
   try {
-    const params = req.params;
+    const { nome } = req.params;
 
+    const users = await listUsers(nome);
+    
     res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain');
-
-    let sql = 'select * from usuario'
-    let values = []
-    if(params) {
-      sql += ' where nome like ?';
-      values = `%${params.nome.split('%20').join(' ')}%`;
-    }
-
-    database.query(sql, values, (errors, results, fields) => {
-      if(errors) {
-          throw new Error('SQL Error');
-      } else {
-          res.end(JSON.stringify(results));
-      }
-    })
+    res.end(JSON.stringify(users));
   } catch(error) {
-    res.statusCode = 500;
-    res.end('Internal server error')
+    console.warn(err);
+
+    switch(err.name) {
+      case 'AuthorizationError':
+        res.statusCode = 403;
+        res.end('Acesso negado');
+        break;
+      default:
+        res.statusCode = 500;
+        res.end('Internal server error');
+        break;
+    }
   }
 }
