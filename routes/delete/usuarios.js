@@ -7,8 +7,8 @@ module.exports = (req, res) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
 
-    const sql = 'delete from usuario where id = ?';
-    const values = [JSON.parse(req.headers.cookie.user).id];
+    const sql = 'delete from usuario where email = ?';
+    const values = [JSON.parse(req.headers.cookie.user).email];
     
     database.query(sql, values,(errors, results, fields) => {
       if(errors) {
