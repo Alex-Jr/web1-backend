@@ -1,31 +1,49 @@
 const fs = require('fs');
+const { extname } = require('path');
 
-function handlerError(error) {
+const authenticator = require('../../utils/authenticator');
+const foldersByExt = require('../../utils/foldersByExt');
+const mimeTypes = require('../../utils/mimeTypes');
 
-}
- 
-function sendFile(req, res) {
-  filePath = req.filePath;
-  contentType = req.contentType;
+const protected = ['/home.html', '/perfil.html'];
 
-  console.log('Sending file ', filePath);
-
-  try {
-    const content = fs.readFileSync(filePath);
-    res.statusCode = 200;
-    res.setHeader('Content-Type', contentType);
-    res.end(content, 'utf-8');
-
-  } catch(error) {
-    if(error.code == 'ENOENT'){
-      res.statusCode = 404;
-      res.end('Sorry, file not found');
-    }
-    else {
-      res.statusCode = 500;
-      res.end('Internal server error');
+module.exports = async (req, res) => {
+  if(protected.includes(req.url)) {
+    try {
+      await authenticator(req);
+    } catch(err) {
+      if(err.name = 'AuthenticatorError') {
+        req.url = `/login.html`;
+      }
     }
   }
-}
+  
+  const ext = String(extname(req.url)).toLowerCase();
 
-module.exports = sendFile;
+  req.filePath = `public/${foldersByExt[ext]}${req.url}`
+  req.contentType = mimeTypes[ext] || 'application/octet-stream';
+
+  return new Promise((resolve, rejects) => {
+    filePath = req.filePath;
+    contentType = req.contentType;
+
+    console.log('Sending file ', filePath);
+
+    try {
+      const content = fs.readFileSync(filePath);
+      res.statusCode = 200;
+      res.setHeader('Content-Type', contentType);
+      res.end(content, 'utf-8');
+    } catch(error) {
+      if(error.code == 'ENOENT'){
+        res.statusCode = 404;
+        res.end('Sorry, file not found');
+      }
+      else {
+        res.statusCode = 500;
+        res.end('Internal server error');
+      }
+    }
+    resolve();
+  });
+}

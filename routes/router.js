@@ -1,8 +1,5 @@
 const { extname } = require('path');
 
-const foldersByExt = require('../utils/foldersByExt');
-const mimeTypes = require('../utils/mimeTypes');
-
 const getRoutes = require('./get');
 const postRoutes = require('./post');
 const deleteRoutes = require('./delete');
@@ -17,9 +14,6 @@ function handleGet(req, res) {
   const ext = String(extname(req.url)).toLowerCase();
 
   if(ext) {
-    req.filePath = `public/${foldersByExt[ext]}${req.url}`
-    req.contentType = mimeTypes[ext] || 'application/octet-stream';
-
     return getRoutes['files'];
   } else {
     // /usuarios?nome=123
