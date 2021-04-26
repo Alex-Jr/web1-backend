@@ -131,7 +131,8 @@ function editar() {
     if (this.readyState == 4) {
       switch(this.status) {
         case 200:
-          alert('Usuário atualizado')
+          document.cookie = `user=${this.responseText}`;
+          alert('Usuário atualizado');
           window.location.assign("/home.html");
           break
         case 400:
