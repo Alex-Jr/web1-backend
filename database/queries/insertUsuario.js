@@ -1,6 +1,6 @@
 const database = require("../setup");
 const { crypt } = require('../../utils/crypto');
-const deleteSessao = require("./deleteSessao");
+const { DuplicationError } = require('../../utils/errors');
 
 module.exports = async (body) => {
   return new Promise((resolve, reject) => {
@@ -14,13 +14,17 @@ module.exports = async (body) => {
     } = body;
 
     const sql = 'INSERT INTO usuario(nome, email, senha, cpf, data_nasc, telefone) values (?, ?, ?, ?, ?, ?)';
-    const values = [ nome, email, crypt(senha), cpf.replace(/[^0-9]/g, ''), datanasc, telefone.replace(/[^0-9]/g, '')]; 
+    const values = [nome, email, crypt(senha), cpf.replace(/[^0-9]/g, ''), datanasc, telefone.replace(/[^0-9]/g, '')]; 
 
     database.query(sql, values, (err, results, fields) => {
-      if(err) {
-        // errors.code === 'ER_DUP_ENTRY') 
+      if(err) {     
+        if(err.code == 'ER_DUP_ENTRY')  {
+          reject(new DuplicationError(err.sqlMessage));
+          return;
+        }
+
         reject(err);
-        return
+        return;
       }
 
       resolve(results);

@@ -22,7 +22,6 @@ module.exports = async (req) => {
     const expiry = new Date(sessao.expires);
 
     if(now.getTime() > expiry.getTime()) throw new AuthorizationError('Token expirado');   
-    
     return parsed;
   } catch (err) {
     throw new AuthorizationError(err.message);

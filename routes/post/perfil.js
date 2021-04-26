@@ -1,60 +1,37 @@
 const perfilValidator = require("../../validator/perfil");
-const database = require("../../database/setup");
-const { ValidationError } = require("../../classes/errors");
+const updateUsuario = require("../../database/queries/updateUsuario");
+const authenticator = require("../../utils/authenticator");
 
-module.exports = (req, res) => {
+module.exports = async (req, res) => {
+  res.setHeader('Content-Type', 'text/plain');
+
   try {
     const body = req.body;
-    const id = JSON.parse(req.headers.cookie.user).id;
-
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain');
+    
+    const user = await authenticator(req);
 
     perfilValidator(body);
 
-    // sql += nome = ?
-    // values.push(nome)
+    await updateUsuario(user.email, body);
 
-    let sql = 'update usuario set ';
-    const values = [];
-
-    for(const [key, value] of Object.entries(body)) {
-      if(value) {
-        sql += `${key} = ? `
-        values.push(value);
-      }
-    }
-
-    if(sql === 'update usuario set ') {
-      throw new ValidationError('Enviar um campo é obrigatório');
-    }
-
-    sql += `where id = ?`
-    values.push(id);
-    
-    database.query(sql, values, (errors, results, fields ) => {
-      if(errors) {
-        console.warn(errors);
-
-        if(errors.code === 'ER_DUP_ENTRY') {
-          res.statusCode = 409;
-          res.end(errors.sqlMessage);
-        } else {
-          res.statusCode = 500;
-          res.end('Internal server error');
-        }
-      } else {
-        res.end('ok');
-      }
-    });
+    res.statusCode = 200;
+    res.end('Usuário atualizado');
   } catch (err) {
     console.warn(err);
 
     switch (err.name) {
       case 'ValidationError': 
         res.statusCode = 400;
-        res.end(err.message)
+        res.end(err.message);
         break
+      case 'AuthorizationError':
+        res.statusCode = 403;
+        res.end('Acesso negado');
+        break;
+      case 'DuplicationError':
+        res.statusCode = 409;
+        res.end(err.message);
+        break;
       default :
         res.statusCode = 500;
         res.end('Internal server error');

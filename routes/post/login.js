@@ -5,11 +5,11 @@ const insertSessao = require("../../database/queries/insertSessao");
 const { AuthorizationError } = require("../../utils/errors");
 
 module.exports = async (req, res) => {
+  res.setHeader('Content-Type', 'text/plain');
+
   try {
     const body = req.body;
     
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain');
     
     loginValidator(body);
     
@@ -31,11 +31,11 @@ module.exports = async (req, res) => {
     delete user.senha;
     delete user.id;
 
+    res.statusCode = 200;
     res.end(JSON.stringify(user));
-
   } catch (err) {
     console.warn(err);
-
+    
     switch (err.name) {
       case 'ValidationError': 
         res.statusCode = 400;

@@ -7,7 +7,6 @@ module.exports = async (req, res) => {
   try {
     const body = req.body;
 
-    
     cadastroValidator(body);
     
     await insertUsuario(body);
@@ -20,8 +19,12 @@ module.exports = async (req, res) => {
     switch (err.name) {
       case 'ValidationError': 
         res.statusCode = 400;
-        res.end(err.message)
+        res.end(err.message);
         break
+      case 'DuplicationError':
+        res.statusCode = 409;
+        res.end(err.message);
+        break;
       default :
         res.statusCode = 500;
         res.end('Internal server error');
