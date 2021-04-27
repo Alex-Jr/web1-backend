@@ -73,7 +73,7 @@ module.exports = (req, res) => {
 
   if(!selected) {
     res.statusCode = 404;
-    res.end('Not Found');
+    res.end('Not Found, maybe you forgot the file extension like .html');
   } else {
     selected(req, res);
   }

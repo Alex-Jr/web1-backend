@@ -1,5 +1,6 @@
 const database = require("../setup");
 const deleteSessao = require("./deleteSessao");
+const { crypt } = require('../../utils/crypto');
 
 module.exports = async (token, userId) => {
   await deleteSessao(userId);
@@ -9,7 +10,7 @@ module.exports = async (token, userId) => {
     date.setDate(date.getDate() + 1);
 
     const sql = 'INSERT INTO sessao VALUES (?, ?, ?)';
-    const values = [token, userId, date];
+    const values = [crypt(token), userId, date];
 
     database.query(sql, values, (err, results, fields) => {
       if(err) {

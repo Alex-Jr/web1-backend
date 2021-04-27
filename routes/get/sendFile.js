@@ -6,6 +6,7 @@ const foldersByExt = require('../../utils/foldersByExt');
 const mimeTypes = require('../../utils/mimeTypes');
 
 const protected = ['/home.html', '/perfil.html'];
+const notProtected = ['/cadastro.html', '/login.html']
 
 module.exports = async (req, res) => {
   if(protected.includes(req.url)) {
@@ -13,8 +14,22 @@ module.exports = async (req, res) => {
       await authenticator(req);
     } catch(err) {
       if(err.name = 'AuthenticatorError') {
+        console.log('Não authorizado');
         req.url = `/login.html`;
       }
+    }
+  }
+
+  if(notProtected.includes(req.url)) {
+    try {
+      await authenticator(req);
+
+      // if this code runs it means the user has an active session;
+      req.url = `/home.html`;
+      console.log('Rodei');
+    } catch(err) {
+      console.log('a');
+      // if authenticator throws error it means user is not logged;
     }
   }
   

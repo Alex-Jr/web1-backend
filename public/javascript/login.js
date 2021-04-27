@@ -1,3 +1,4 @@
+// necessário para caso do back end retornar login.html na requisição de home.html
 window.history.replaceState({}, "Login", 'login.html');
 
 function login() {
@@ -46,7 +47,6 @@ function login() {
       switch(this.status) {
         case 200:
           document.cookie = `user=${this.responseText}; SameSite=Lax`;
-          document.cookie = 'logged=true; SameSite=Lax';
           window.location.assign('/home.html');
           break
         default: 

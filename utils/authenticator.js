@@ -1,4 +1,5 @@
-const selectSessao = require("../database/queries/selectSessao")
+const selectSessao = require("../database/queries/selectSessao");
+const { decrypt } = require('../utils/crypto');
 const { AuthorizationError } = require("../utils/errors");
 
 module.exports = async (req) => {
@@ -9,15 +10,20 @@ module.exports = async (req) => {
   const parsed = JSON.parse(req.headers.cookie.user);
   
   const {
-    token
+    token,
+    id
   } = parsed;
 
   if(!token) throw new AuthorizationError('Missing token in user cookies'); 
+  if(!id) throw new AuthorizationError('Missing id in user cookies')
 
   try {
     const now = new Date();
       
-    const sessao = await selectSessao(token);
+    const sessao = await selectSessao(id);
+
+    if(!sessao) throw new AuthorizationError('Acesso negado');
+    if(decrypt(sessao.token) !== token) throw AuthorizationError('Acesso negado');
   
     const expiry = new Date(sessao.expires);
 

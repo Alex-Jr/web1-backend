@@ -1,5 +1,5 @@
-// var new_row = document.createElement('div');
-// new_row.className = "aClassName";
+// necessário para caso do back end retornar login.html na requisição de home.html
+window.history.replaceState({}, "HomePage", 'home.html');
 
 window.addEventListener('load', function () {
   const element = document.getElementById('user-nome');

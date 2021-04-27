@@ -28,7 +28,6 @@ module.exports = async (req, res) => {
     user.token = token;
 
     delete user.senha;
-    delete user.id;
 
     res.statusCode = 200;
     res.end(JSON.stringify(user));
