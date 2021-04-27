@@ -2,13 +2,11 @@ const database = require("../setup")
 const { DuplicationError, ValidationError } = require("../../utils/errors");
 const { crypt } = require("../../utils/crypto");
 
-module.exports = (email, params) => new Promise((resolve, reject) => {
-  if(!email) throw new ValidationError('Internal server error');
+module.exports = (id, params) => new Promise((resolve, reject) => {
+  if(!id) throw new Error('Não deveria ser possível chegar nessa funcão sem um id.');
 
   let sql = 'UPDATE usuario SET ';
   const values = [];
-
-  delete params.confsenha;
 
   let first = true;
 
@@ -40,8 +38,8 @@ module.exports = (email, params) => new Promise((resolve, reject) => {
     throw new ValidationError('Enviar um campo é obrigatório');
   }
 
-  sql += ` WHERE email = ?`
-  values.push(email);
+  sql += ` WHERE id = ?`
+  values.push(id);
   
   database.query(sql, values, (err, results, fields ) => {
     if(err) {

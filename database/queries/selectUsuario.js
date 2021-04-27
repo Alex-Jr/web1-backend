@@ -1,9 +1,9 @@
 const database = require("../setup")
 const { NotFoundError } = require("../../utils/errors");
 
-module.exports = (email) => new Promise((resolve, reject) => {
-  const sql = 'SELECT * FROM usuario WHERE email = ?';
-  const values = [email]; 
+module.exports = (id) => new Promise((resolve, reject) => {
+  const sql = 'SELECT * FROM usuario WHERE id = ?';
+  const values = [id]; 
 
   database.query(sql, values, (errors, results, fields) => {
     if(errors) {

@@ -15,9 +15,11 @@ module.exports = async (req, res) => {
 
     perfilValidator(body);
 
-    await updateUsuario(user.email, body);
+    delete body.confsenha;
 
-    const updatedUser = await selectUsuario(body.email || user.email);
+    await updateUsuario(user.id, body);
+
+    const updatedUser = await selectUsuario(user.id);
 
     const token = generateToken();
 
