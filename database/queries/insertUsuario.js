@@ -7,14 +7,14 @@ module.exports = async (body) => {
     const {
       nome,
       email,
-      datanasc,
+      data_nasc,
       cpf,
       senha,
       telefone,
     } = body;
 
     const sql = 'INSERT INTO usuario(nome, email, senha, cpf, data_nasc, telefone) values (?, ?, ?, ?, ?, ?)';
-    const values = [nome, email, crypt(senha), cpf.replace(/[^0-9]/g, ''), datanasc, telefone.replace(/[^0-9]/g, '')]; 
+    const values = [nome, email, crypt(senha), cpf.replace(/[^0-9]/g, ''), data_nasc, telefone.replace(/[^0-9]/g, '')]; 
 
     database.query(sql, values, (err, results, fields) => {
       if(err) {     

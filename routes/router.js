@@ -64,9 +64,9 @@ module.exports = (req, res) => {
       selected = handleDelete(req, res)
       break
     default:
-      selected = true;
       res.statusCode = 405;
       res.end('Method not Allowed');
+      return;
   }
 
   console.log(`${req.method} ${req.url}`);

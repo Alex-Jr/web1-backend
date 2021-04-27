@@ -131,13 +131,17 @@ function editar() {
     if (this.readyState == 4) {
       switch(this.status) {
         case 200:
-          document.cookie = `user=${this.responseText}`;
+          document.cookie = `user=${this.responseText}; SameSite=Lax'`;
           alert('Usuário atualizado');
           window.location.assign("/home.html");
           break
         case 400:
           alert(this.response.split('/').join('\n'));
           break
+        case 403:
+          alert('Não autorizado');
+          logout();
+          break;
         case 409:
           let msg = 'Já existe um usuário utilizando \n'
           let infos = this.response.match(/\'(.*?)\'/g);
@@ -164,3 +168,4 @@ function editar() {
 
   xhttp.send(bodyRequest);
 };
+//tudo func

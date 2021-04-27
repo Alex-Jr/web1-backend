@@ -18,14 +18,11 @@ module.exports = async (req, res) => {
     }
   }
   
-  const ext = String(extname(req.url)).toLowerCase();
-
-  req.filePath = `public/${foldersByExt[ext]}${req.url}`
-  req.contentType = mimeTypes[ext] || 'application/octet-stream';
-
   return new Promise((resolve, rejects) => {
-    filePath = req.filePath;
-    contentType = req.contentType;
+    const ext = String(extname(req.url)).toLowerCase();
+
+    filePath = `public/${foldersByExt[ext]}${req.url}`
+    contentType = mimeTypes[ext] || 'text/plain';
 
     console.log('Sending file ', filePath);
 

@@ -7,7 +7,7 @@ module.exports = (nome) => new Promise((resolve, reject) => {
 
   if(nome) {
     sql += ' where nome like ?';
-    values.push(`%${nome.split('%20').join(' ')}%`);
+    values.push(`%${nome}%`);
   }
 
   database.query(sql, values, (errors, results, fields) => {

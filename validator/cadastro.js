@@ -15,7 +15,7 @@ module.exports = (body) => {
   const {
     nome,
     email,
-    datanasc,
+    data_nasc,
     cpf,
     senha,
     confsenha,
@@ -30,7 +30,7 @@ module.exports = (body) => {
 
   if(!isCpfValido(cpf)) validationErrors.push('CPF inválido');
 
-  if(!isDataNascValida(datanasc)) validationErrors.push('Data inválida');
+  if(!isDataNascValida(data_nasc)) validationErrors.push('Data inválida');
 
   if(!isConfSenhaValida(confsenha, senha)) validationErrors.push('Senhas não são iguais');
 

@@ -90,7 +90,11 @@ function buscar() {
           renderData(JSON.parse(this.responseText));
           break;
         case 400:
-          document.getElementById('error').innerHTML = this.responseText;
+          alert(this.responseText);
+          break;
+        case 403:
+          alert('Não autorizado');
+          logout();
           break;
         default:
           res.statusCode = 500;

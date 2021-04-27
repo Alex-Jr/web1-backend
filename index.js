@@ -10,6 +10,8 @@ const parseCookie = require('./utils/parseCookie');
 const router = require('./routes/router');
 
 const server = http.createServer((req, res) => {
+  req.url = decodeURIComponent(req.url);
+
   req.headers.cookie = parseCookie(req.headers.cookie);
 
   // body parser

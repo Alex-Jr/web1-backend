@@ -45,8 +45,8 @@ function login() {
     if (this.readyState == 4) {
       switch(this.status) {
         case 200:
-          document.cookie = `user=${this.responseText}`;
-          document.cookie = 'logged=true';
+          document.cookie = `user=${this.responseText}; SameSite=Lax`;
+          document.cookie = 'logged=true; SameSite=Lax';
           window.location.assign('/home.html');
           break
         default: 
