@@ -10,7 +10,6 @@ module.exports = async (req, res) => {
   try {
     const body = req.body;
     
-    
     loginValidator(body);
     
     const {
@@ -38,12 +37,12 @@ module.exports = async (req, res) => {
     
     switch (err.name) {
       case 'ValidationError': 
-        res.statusCode = 400;
+        res.statusCode = err.statusCode;
         res.end(err.message)
         break;
       case 'AuthorizationError':
       case 'NotFoundError': 
-        res.statusCode = 403;
+        res.statusCode = err.statusCode;
         res.end('Email ou senha errados');
         break;
       default :

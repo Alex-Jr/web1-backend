@@ -15,7 +15,7 @@ module.exports = async (req, res) => {
 
     switch(err.name) {
       case 'AuthorizationError':
-        res.statusCode = 403;
+        res.statusCode = err.statusCode;
         res.end('Acesso negado');
         break;
       default:

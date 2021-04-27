@@ -1,3 +1,11 @@
+class ValidationError extends Error {
+  constructor(message) {
+      super(message);
+      this.name = 'ValidationError'
+      this.statusCode = 400;
+  }
+}
+
 class AuthorizationError extends Error {
   constructor(message) {
     super(message);
@@ -23,6 +31,7 @@ class DuplicationError extends Error {
 }
 
 module.exports = {
+  ValidationError,
   AuthorizationError,
   NotFoundError,
   DuplicationError,

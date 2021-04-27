@@ -18,11 +18,11 @@ module.exports = async (req, res) => {
 
     switch (err.name) {
       case 'ValidationError': 
-        res.statusCode = 400;
+        res.statusCode = err.statusCode;
         res.end(err.message);
         break
       case 'DuplicationError':
-        res.statusCode = 409;
+        res.statusCode = err.statusCode;
         res.end(err.message);
         break;
       default :

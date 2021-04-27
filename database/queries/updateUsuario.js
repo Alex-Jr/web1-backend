@@ -1,7 +1,5 @@
-const crypto = require("../../utils/crypto")
 const database = require("../setup")
-const { DuplicationError } = require("../../utils/errors");
-const { ValidationError } = require('../../classes/errors'); 
+const { DuplicationError, ValidationError } = require("../../utils/errors");
 
 module.exports = (email, params) => new Promise((resolve, reject) => {
   if(!email) throw new ValidationError('Internal server error');

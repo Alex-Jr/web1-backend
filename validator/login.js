@@ -1,4 +1,4 @@
-const { ValidationError } = require("../classes/errors");
+const { ValidationError } = require("../utils/errors");
 
 const { 
   isEmailValido,
