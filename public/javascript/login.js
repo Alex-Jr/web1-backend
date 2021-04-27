@@ -1,3 +1,5 @@
+window.history.replaceState({}, "Login", 'login.html');
+
 function login() {
   let valido = true;
   let errors = [];
