@@ -1,7 +1,7 @@
 const perfilValidator = require("../../validator/perfil");
 const updateUsuario = require("../../database/queries/updateUsuario");
 const insertSessao = require('../../database/queries/insertSessao');
-const selectUsuario = require("../../database/queries/selectUsuario");
+const selectUsuario = require("../../database/queries/selectUsuarioById");
 const authenticator = require("../../utils/authenticator");
 const { generateToken } = require("../../utils/crypto");
 

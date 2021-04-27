@@ -1,6 +1,6 @@
 const loginValidator = require("../../validator/login");
 const { decrypt, generateToken } = require('../../utils/crypto');
-const selectUsuario = require("../../database/queries/selectUsuario");
+const selectUsuario = require("../../database/queries/selectUsuarioByEmail");
 const insertSessao = require("../../database/queries/insertSessao");
 const { AuthorizationError } = require("../../utils/errors");
 
