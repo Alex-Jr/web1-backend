@@ -5,9 +5,6 @@ module.exports = (email) => new Promise((resolve, reject) => {
   const sql = 'SELECT * FROM usuario WHERE email = ?';
   const values = [email]; 
 
-  console.log(sql);
-  console.log(values);
-
   database.query(sql, values, (errors, results, fields) => {
     if(errors) {
       reject(errors);
