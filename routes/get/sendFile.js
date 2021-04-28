@@ -26,9 +26,8 @@ module.exports = async (req, res) => {
 
       // if this code runs it means the user has an active session;
       req.url = `/home.html`;
-      console.log('Rodei');
     } catch(err) {
-      console.log('a');
+      console.log('.....');
       // if authenticator throws error it means user is not logged;
     }
   }

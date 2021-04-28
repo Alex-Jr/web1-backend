@@ -2,8 +2,9 @@ require('dotenv').config();
 
 const crypto = require('crypto');
 
-const alg = process.env.CRYPTO_ALG;
-const pwd = Buffer.from(process.env.CRYPTO_PWD);
+// se não tiver no env irá usar os valores hardcoded
+const alg = process.env.CRYPTO_ALG || 'aes-256-cbc';
+const pwd = Buffer.from(process.env.CRYPTO_PWD || 'ABCDEZHIKLMNOPQRSTVXZ012345');
 
 function crypt(texto){
   const iv = crypto.randomBytes(16);
